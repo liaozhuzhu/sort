@@ -7,7 +7,7 @@ body {
     text-align: center;
 }
 
-.settings {
+.input {
     margin: 10px;
     height: 100px;
     outline: 5px solid blue;
@@ -16,11 +16,17 @@ body {
     align-items: center;
 }
 
-.settings div {
+.input div {
     outline: 3px solid purple;
 }
 
 .container {
-    height: 600px;
     outline: 5px solid red;
+}
+
+.settings {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    outline: 5px solid pink;
 }
