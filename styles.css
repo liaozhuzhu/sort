@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -7,27 +9,79 @@ body {
     text-align: center;
 }
 
+/* Input Number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.user-input {
+    padding: 10px;
+}
+
+/* Buttons */
+.user-button {
+    width: 100px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+.user-button:hover {
+    padding: 9px;
+}
+
+.user-button:active {
+    transform: scale(1.01);
+}
+
+.user-button:focus {
+    background-color: blue;
+}
+
+#go {
+    background-color: lightgreen;
+    color: black;
+}
+
+#random {
+    background-color: lightpink;
+    color: black;
+}
+/* End of Buttons */
+
+/* Input Container */
 .input {
-    margin: 10px;
+    margin: 0px;
+    padding: 5px;
     height: 100px;
-    outline: 5px solid blue;
+    background-color: #2af5ff;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
+/* Array of Inputted Numbers */
 .array-container {
     outline: 3px solid purple;
     margin: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
 }
 
+/* Bar Container */
 .container {
     outline: 5px solid red;
 }
 
+/* Footer Settings Container */
 .settings {
+    margin-top: 10px;
+    height: 100px;
+    padding: 5px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    outline: 5px solid pink;
+    background-color: #60afff;
 }

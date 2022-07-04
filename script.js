@@ -8,6 +8,16 @@ let input = document.getElementById("number-input");
 // Initilalize Empty Array 
 let inputArray = [];
 
+
+function setNumbers() {
+    if (input.value.length != 0) {
+        inputArray.push(input.value);
+        arrayContainer.innerHTML += input.value + ", ";
+        input.value = "";
+    }
+    input.focus();
+}
+
 function bubbleSwap(arr, x, y) {
     let temp = arr[x];
     arr[x] = arr[y];
@@ -25,20 +35,15 @@ function bubbleSort(arr) {
     container.innerHTML = arr;
 }
 
-function setNumbers() {
-    if (input.value.length != 0) {
-        inputArray.push(input.value);
-        console.log(inputArray);
-        arrayContainer.innerHTML += input.value + ", ";
-        input.value = "";
-    }
-}
-
 // Buttons 
 document.getElementById("bubble").addEventListener("click", () => {
-  bubbleSort([9,3,6,7,32,6,8,1,3,5,4,6]);
+  bubbleSort([1, 23, 4, 232, 2, 1]);
 }); 
 
-document.getElementById("go").addEventListener("click", () => {
+document.getElementById("enter").addEventListener("click", () => {
     setNumbers();
-})
+});
+
+document.getElementById("go").addEventListener("click", () => {
+    bubbleSort(inputArray);
+});
