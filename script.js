@@ -1,5 +1,12 @@
+// Containers
 let container = document.getElementById("container-h1");
-let arr = new Array(1,3,5,4,6);
+let arrayContainer = document.getElementById("list");
+
+// UI Stuff
+let input = document.getElementById("number-input");
+
+// Initilalize Empty Array 
+let inputArray = [];
 
 function bubbleSwap(arr, x, y) {
     let temp = arr[x];
@@ -18,7 +25,20 @@ function bubbleSort(arr) {
     container.innerHTML = arr;
 }
 
+function setNumbers() {
+    if (input.value.length != 0) {
+        inputArray.push(input.value);
+        console.log(inputArray);
+        arrayContainer.innerHTML += input.value + ", ";
+        input.value = "";
+    }
+}
+
 // Buttons 
 document.getElementById("bubble").addEventListener("click", () => {
-  bubbleSort([1,3,5,4,6]);
+  bubbleSort([9,3,6,7,32,6,8,1,3,5,4,6]);
 }); 
+
+document.getElementById("go").addEventListener("click", () => {
+    setNumbers();
+})

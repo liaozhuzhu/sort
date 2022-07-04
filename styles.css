@@ -16,8 +16,9 @@ body {
     align-items: center;
 }
 
-.input div {
+.array-container {
     outline: 3px solid purple;
+    margin: 10px;
 }
 
 .container {
