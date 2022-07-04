@@ -26,6 +26,7 @@ input::-webkit-inner-spin-button {
     background-color: black;
     color: white;
     padding: 10px;
+    border-radius: 10px;
 }
 
 .user-button:hover {
@@ -47,6 +48,11 @@ input::-webkit-inner-spin-button {
 
 #random {
     background-color: lightpink;
+    color: black;
+}
+
+#enter {
+    background-color: #28c2ff;
     color: black;
 }
 /* End of Buttons */

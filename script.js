@@ -37,7 +37,7 @@ function bubbleSort(arr) {
 
 // Buttons 
 document.getElementById("bubble").addEventListener("click", () => {
-  bubbleSort([1, 23, 4, 232, 2, 1]);
+  bubbleSort([1, 23, 4, 232, 2, 1, 4, 5, 234, 5]);
 }); 
 
 document.getElementById("enter").addEventListener("click", () => {
