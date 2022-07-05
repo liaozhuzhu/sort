@@ -45,5 +45,6 @@ document.getElementById("enter").addEventListener("click", () => {
 });
 
 document.getElementById("go").addEventListener("click", () => {
+    console.log(inputArray);
     bubbleSort(inputArray);
 });

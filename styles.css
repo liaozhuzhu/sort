@@ -79,6 +79,10 @@ input::-webkit-inner-spin-button {
 /* Bar Container */
 .container {
     outline: 5px solid red;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Footer Settings Container */
