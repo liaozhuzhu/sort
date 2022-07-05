@@ -117,9 +117,6 @@ go.addEventListener("click", () => {
     if (quick.classList.contains("focus")) {
         console.log("quick");
     }
-    else {
-        alert("Select a Sort");
-    }
 });
 
 window.addEventListener("keydown", checkKeyPress, false);
