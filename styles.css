@@ -55,6 +55,10 @@ input::-webkit-inner-spin-button {
     background-color: #28c2ff;
     color: black;
 }
+
+#clear {
+    background-color: red;
+}
 /* End of Buttons */
 
 /* Input Container */
@@ -70,15 +74,14 @@ input::-webkit-inner-spin-button {
 
 /* Array of Inputted Numbers */
 .array-container {
-    outline: 3px solid purple;
     margin: 10px;
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
+    border-bottom: 3px solid black;
 }
 
 /* Bar Container */
 .container {
-    outline: 5px solid red;
     height: 300px;
     display: flex;
     align-items: center;

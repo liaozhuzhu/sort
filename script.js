@@ -1,6 +1,6 @@
 // Containers
-let container = document.getElementById("container-h1");
 let arrayContainer = document.getElementById("list");
+let container = document.getElementById("container-h1");
 
 // UI Stuff
 let input = document.getElementById("number-input");
@@ -13,7 +13,6 @@ let quick = document.getElementById("quick");
 
 // Initilalize Empty Array 
 let inputArray = [];
-let numArray = [];
 
 // Functions
 //
@@ -21,19 +20,19 @@ let numArray = [];
 // Put Numbers Into Array
 function setNumbers() {
     if (input.value.length != 0) {
-        inputArray.push(input.value);
+        inputArray.push(parseInt(input.value));
         arrayContainer.innerHTML += input.value + ", ";
         input.value = "";
     }
     input.focus();
 }
 
-// Convert Input Array to Int and Begin Sort
-function convertArray(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        numArray.push(parseInt(arr[i]));
-    }
-    bubbleSort(numArray);
+// Clear List
+function clearList() {
+    arrayContainer.innerHTML = "";
+    arrayContainer.textContent = "List of Numbers to Sort: ";
+    container.innerHTML = "";
+    inputArray = [];
 }
 
 // Bubble Sort
@@ -103,8 +102,12 @@ document.getElementById("enter").addEventListener("click", () => {
     setNumbers();
 });
 
+document.getElementById("clear").addEventListener("click", () => {
+   clearList(); 
+});
+
 document.getElementById("go").addEventListener("click", () => {
-    convertArray(inputArray);
+    bubbleSort(inputArray);
 });
 
 window.addEventListener("keydown", checkKeyPress, false);
