@@ -13,12 +13,12 @@ let quick = document.getElementById("quick");
 
 // Initilalize Empty Array 
 let inputArray = [];
+let numArray = [];
 
 // Functions
 //
 
-// Check Which Sort
-
+// Put Numbers Into Array
 function setNumbers() {
     if (input.value.length != 0) {
         inputArray.push(input.value);
@@ -28,6 +28,16 @@ function setNumbers() {
     input.focus();
 }
 
+// Convert Input Array to Int and Begin Sort
+function convertArray(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        numArray.push(parseInt(arr[i]));
+    }
+    bubbleSort(numArray);
+}
+
+// Bubble Sort
+//
 function bubbleSwap(arr, x, y) {
     let temp = arr[x];
     arr[x] = arr[y];
@@ -44,6 +54,13 @@ function bubbleSort(arr) {
     }
     container.innerHTML = arr;
 }
+//
+// End Bubble Sort
+
+//
+// End of Functions
+
+
 
 // Buttons 
 //
@@ -81,15 +98,13 @@ quick.addEventListener("click", () => {
     quick.classList.add("focus");
     bubbleSort([1, 23, 4, 232, 2, 1, 4, 5, 234, 5]);
 }); 
-// End of Buttons
 
 document.getElementById("enter").addEventListener("click", () => {
     setNumbers();
 });
 
 document.getElementById("go").addEventListener("click", () => {
-    console.log(inputArray);
-    bubbleSort(inputArray);
+    convertArray(inputArray);
 });
 
 window.addEventListener("keydown", checkKeyPress, false);
@@ -98,6 +113,5 @@ function checkKeyPress(key) {
         setNumbers();
     }
 }
-
-// On Window Load
-checkSort();
+//
+// End of Buttons
