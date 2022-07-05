@@ -37,8 +37,8 @@ input::-webkit-inner-spin-button {
     transform: scale(1.01);
 }
 
-.user-button:focus {
-    background-color: blue;
+.focus {
+    background-color: skyblue;
 }
 
 #go {
