@@ -6,6 +6,7 @@ let container = document.getElementById("container-h1");
 let input = document.getElementById("number-input");
 
 // Buttons 
+let go = document.getElementById("go");
 let bubble = document.getElementById("bubble");
 let merge = document.getElementById("merge");
 let heap = document.getElementById("heap");
@@ -67,11 +68,11 @@ function bubbleSort(arr) {
 // Sort Buttons
 bubble.click();
 bubble.addEventListener("click", () => {
+    console.log("bubble");
     bubble.classList.add("focus");
     merge.classList.remove("focus");
     heap.classList.remove("focus");
     quick.classList.remove("focus");
-    bubbleSort([1, 23, 4, 232, 2, 1, 4, 5, 234, 5]);
 }); 
 
 merge.addEventListener("click", () => {
@@ -79,7 +80,6 @@ merge.addEventListener("click", () => {
     merge.classList.add("focus");
     heap.classList.remove("focus");
     quick.classList.remove("focus");
-    bubbleSort([1, 23, 4, 232, 2, 1, 4, 5, 234, 5]);
 }); 
 
 heap.addEventListener("click", () => {
@@ -87,7 +87,6 @@ heap.addEventListener("click", () => {
     merge.classList.remove("focus");
     heap.classList.add("focus");
     quick.classList.remove("focus");
-    bubbleSort([1, 23, 4, 232, 2, 1, 4, 5, 234, 5]);
 }); 
 
 quick.addEventListener("click", () => {
@@ -95,7 +94,6 @@ quick.addEventListener("click", () => {
     merge.classList.remove("focus");
     heap.classList.remove("focus");
     quick.classList.add("focus");
-    bubbleSort([1, 23, 4, 232, 2, 1, 4, 5, 234, 5]);
 }); 
 
 document.getElementById("enter").addEventListener("click", () => {
@@ -106,8 +104,22 @@ document.getElementById("clear").addEventListener("click", () => {
    clearList(); 
 });
 
-document.getElementById("go").addEventListener("click", () => {
-    bubbleSort(inputArray);
+go.addEventListener("click", () => {
+    if (bubble.classList.contains("focus")) {
+        bubbleSort(inputArray);
+    }
+    if (merge.classList.contains("focus")) {
+        console.log("merge");
+    }
+    if (heap.classList.contains("focus")) {
+        console.log("heap");
+    }
+    if (quick.classList.contains("focus")) {
+        console.log("quick");
+    }
+    else {
+        alert("Select a Sort");
+    }
 });
 
 window.addEventListener("keydown", checkKeyPress, false);
