@@ -81,7 +81,6 @@ input::-webkit-inner-spin-button {
 
 /* Bar Container */
 .container {
-    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,7 +98,8 @@ input::-webkit-inner-spin-button {
 
 /* Created Elements */
 .created-block {
+    display: inline-block;
     background-color: skyblue;
-    width: 10px;
+    width: 15px;
     outline: 1px solid black;
 }
