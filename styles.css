@@ -103,3 +103,10 @@ input::-webkit-inner-spin-button {
     width: 15px;
     outline: 1px solid black;
 }
+
+.created-unsorted {
+    display: inline-block;
+    background-color: red;
+    width: 15px;
+    outline: 1px solid black;
+}

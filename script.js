@@ -15,6 +15,9 @@ let quick = document.getElementById("quick");
 // Initilalize Empty Array 
 let inputArray = [];
 
+// Extra
+let x = 0;
+
 // Functions
 //
 
@@ -24,6 +27,8 @@ function setNumbers() {
         inputArray.push(parseInt(input.value));
         arrayContainer.innerHTML += input.value + ", ";
         input.value = "";
+        createUnsortedDivs(inputArray, x);
+        x += 1;
     }
     input.focus();
 }
@@ -58,6 +63,7 @@ function bubbleSort(arr) {
 // End Bubble Sort
 
 // Create Divs
+//
 function createDivs(arr) {
     for (let i = 0; i < arr.length; i++) {
         let block = document.createElement("div");
@@ -66,6 +72,17 @@ function createDivs(arr) {
         container.appendChild(block);
     }
 }
+
+function createUnsortedDivs(arr, x) {
+    let unsortedBlock = document.createElement("div");
+    unsortedBlock.classList.add("created-unsorted");
+    unsortedBlock.style.height = inputArray[x] + "px";
+    container.appendChild(unsortedBlock);
+}
+
+//
+// End Create Divs
+
 
 //
 // End of Functions
