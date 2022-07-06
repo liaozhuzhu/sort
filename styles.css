@@ -81,7 +81,7 @@ input::-webkit-inner-spin-button {
 
 /* Bar Container */
 .container {
-    height: 500px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,7 +89,6 @@ input::-webkit-inner-spin-button {
 
 /* Footer Settings Container */
 .settings {
-    margin-top: 10px;
     height: 100px;
     padding: 5px;
     display: flex;
@@ -98,10 +97,9 @@ input::-webkit-inner-spin-button {
     background-color: #60afff;
 }
 
-@media only screen and (max-width: 1440px)
-{
-    .container
-    {
-        height: 410px;
-    }
+/* Created Elements */
+.created-block {
+    background-color: skyblue;
+    width: 10px;
+    outline: 1px solid black;
 }

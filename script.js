@@ -45,14 +45,23 @@ function bubbleSwap(arr, x, y) {
 }
 
 function bubbleSort(arr) {
+    let block = document.createElement("div");
+    let block2 = document.createElement("div");
+    block.classList.add("created-block");
+    block2.classList.add("created-block");
     for (let i = 0; i <= arr.length; i++) {
         for (let j = 0; j <= arr.length-i; j++) {
+            block.innerHTML = arr[j];
+            block.style.height = arr[j] + "px";
+            block2.innerHTML = arr[j+1];
+            block2.style.height = arr[j+1] + "px";
             if (arr[j] > arr[j+1]) {
                 bubbleSwap(arr, j, j+1);
             }
         }
     }
     container.innerHTML = arr;
+    container.appendChild(block);
 }
 //
 // End Bubble Sort
