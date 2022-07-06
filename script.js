@@ -1,6 +1,8 @@
 // Containers
 let arrayContainer = document.getElementById("list");
-let container = document.getElementById("container-h1");
+let container = document.getElementById("container");
+let sortedContainer = document.getElementById("sorted-container");
+let unsortedContainer = document.getElementById("unsorted-container");
 
 // UI Stuff
 let input = document.getElementById("number-input");
@@ -37,7 +39,8 @@ function setNumbers() {
 function clearList() {
     arrayContainer.innerHTML = "";
     arrayContainer.textContent = "List of Numbers to Sort: ";
-    container.innerHTML = "";
+    sortedContainer.innerHTML = "";
+    unsortedContainer.innerHTML = "";
     inputArray = [];
 }
 
@@ -65,19 +68,21 @@ function bubbleSort(arr) {
 // Create Divs
 //
 function createDivs(arr) {
+    //container.appendChild(sortedContainer);
     for (let i = 0; i < arr.length; i++) {
         let block = document.createElement("div");
-        block.classList.add("created-block");
+        block.classList.add("created-sorted");
         block.style.height = arr[i] + "px";
-        container.appendChild(block);
+        sortedContainer.appendChild(block);
     }
 }
 
 function createUnsortedDivs(arr, x) {
+    //container.appendChild(unsortedContainer);
     let unsortedBlock = document.createElement("div");
     unsortedBlock.classList.add("created-unsorted");
     unsortedBlock.style.height = inputArray[x] + "px";
-    container.appendChild(unsortedBlock);
+    unsortedContainer.appendChild(unsortedBlock);
 }
 
 //

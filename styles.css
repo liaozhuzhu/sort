@@ -79,11 +79,12 @@ input::-webkit-inner-spin-button {
     border-bottom: 3px solid black;
 }
 
-/* Bar Container */
-.container {
+/* Body Container */
+.main-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 500px;
 }
 
 /* Footer Settings Container */
@@ -97,16 +98,16 @@ input::-webkit-inner-spin-button {
 }
 
 /* Created Elements */
-.created-block {
-    display: inline-block;
-    background-color: skyblue;
-    width: 15px;
+.created-unsorted {
+    width: 10px;
+    background-color: red;
     outline: 1px solid black;
+    display: inline-block;
 }
 
-.created-unsorted {
-    display: inline-block;
-    background-color: red;
-    width: 15px;
+.created-sorted {
+    width: 10px;
+    background-color: skyblue;
     outline: 1px solid black;
+    display: inline-block;
 }
