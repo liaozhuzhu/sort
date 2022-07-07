@@ -1,5 +1,4 @@
 // Containers
-let arrayContainer = document.getElementById("list");
 let container = document.getElementById("container");
 let sortedContainer = document.getElementById("sorted-container");
 let unsortedContainer = document.getElementById("unsorted-container");
@@ -8,6 +7,8 @@ let unsortedContainer = document.getElementById("unsorted-container");
 let input = document.getElementById("number-input");
 
 // Buttons 
+let random = document.getElementById("random");
+let clear = document.getElementById("clear");
 let go = document.getElementById("go");
 let bubble = document.getElementById("bubble");
 let merge = document.getElementById("merge");
@@ -15,33 +16,27 @@ let heap = document.getElementById("heap");
 let quick = document.getElementById("quick");
 
 // Initilalize Empty Array 
-let inputArray = [];
-
-// Extra
-let x = 0;
+let randomArray = [];
 
 // Functions
 //
 
-// Put Numbers Into Array
-function setNumbers() {
-    if (input.value.length != 0) {
-        inputArray.push(parseInt(input.value));
-        arrayContainer.innerHTML += input.value + ", ";
-        input.value = "";
-        createUnsortedDivs(inputArray, x);
-        x += 1;
+// Create Random Array 
+function createRandom() {
+    clearList();
+    for (let i = 0; i < 50; i++) {
+        let randomInt = Math.floor(Math.random() * 501);
+        if (randomInt != 0) {
+            randomArray.push(randomInt);
+        }
     }
-    input.focus();
+    createUnsortedDivs(randomArray);
 }
-
 // Clear List
 function clearList() {
-    arrayContainer.innerHTML = "";
-    arrayContainer.textContent = "List of Numbers to Sort: ";
     sortedContainer.innerHTML = "";
     unsortedContainer.innerHTML = "";
-    inputArray = [];
+    randomArray = [];
 }
 
 // Bubble Sort
@@ -68,7 +63,6 @@ function bubbleSort(arr) {
 // Create Divs
 //
 function createDivs(arr) {
-    //container.appendChild(sortedContainer);
     for (let i = 0; i < arr.length; i++) {
         let block = document.createElement("div");
         block.classList.add("created-sorted");
@@ -77,12 +71,13 @@ function createDivs(arr) {
     }
 }
 
-function createUnsortedDivs(arr, x) {
-    //container.appendChild(unsortedContainer);
-    let unsortedBlock = document.createElement("div");
-    unsortedBlock.classList.add("created-unsorted");
-    unsortedBlock.style.height = inputArray[x] + "px";
-    unsortedContainer.appendChild(unsortedBlock);
+function createUnsortedDivs(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let unsortedBlock = document.createElement("div");
+        unsortedBlock.classList.add("created-unsorted");
+        unsortedBlock.style.height = arr[i] + "px";
+        unsortedContainer.appendChild(unsortedBlock);
+    }
 }
 
 //
@@ -128,17 +123,17 @@ quick.addEventListener("click", () => {
     quick.classList.add("focus");
 }); 
 
-document.getElementById("enter").addEventListener("click", () => {
-    setNumbers();
+random.addEventListener("click", () => {
+    createRandom();
 });
 
-document.getElementById("clear").addEventListener("click", () => {
+clear.addEventListener("click", () => {
    clearList(); 
 });
 
 go.addEventListener("click", () => {
     if (bubble.classList.contains("focus")) {
-        bubbleSort(inputArray);
+        bubbleSort(randomArray);
     }
     if (merge.classList.contains("focus")) {
         console.log("merge");
