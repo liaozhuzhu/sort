@@ -9,7 +9,6 @@ let input = document.getElementById("number-input");
 // Buttons 
 let random = document.getElementById("random");
 let clear = document.getElementById("clear");
-let go = document.getElementById("go");
 let bubble = document.getElementById("bubble");
 let merge = document.getElementById("merge");
 let heap = document.getElementById("heap");
@@ -17,6 +16,9 @@ let quick = document.getElementById("quick");
 
 // Initilalize Empty Array 
 let randomArray = [];
+
+// Extra 
+let finished = false;
 
 // Functions
 //
@@ -34,7 +36,7 @@ function createRandom() {
 }
 // Clear List
 function clearList() {
-    sortedContainer.innerHTML = "";
+    finished = true;
     unsortedContainer.innerHTML = "";
     randomArray = [];
 }
@@ -48,43 +50,42 @@ function bubbleSwap(arr, x, y) {
 }
 
 function bubbleSort(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr.length-i; j++) {
-            if (arr[j] > arr[j+1]) {
-                bubbleSwap(arr, j, j+1);
+    if (finished) {
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr.length-i; j++) {
+                if (arr[j] > arr[j+1]) {
+                    bubbleSwap(arr, j, j+1);
+                }
             }
         }
+        createDivs(arr);
+        finished = false;
     }
-    createDivs(arr);
 }
 //
 // End Bubble Sort
 
 // Create Divs
-//
-function createDivs(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        let sortedBlock = document.createElement("div");
-        sortedBlock.classList.add("created-block");
-        sortedBlock.setAttribute("id", "sorted-block");
-        sortedBlock.style.height = arr[i] + "px";
-        sortedContainer.appendChild(sortedBlock);
-    }
-}
-
 function createUnsortedDivs(arr) {
     for (let i = 0; i < arr.length; i++) {
         let unsortedBlock = document.createElement("div");
-        unsortedBlock.classList.add("created-block");
+        unsortedBlock.classList.add("unsorted-block");
         unsortedBlock.setAttribute("id", "unsorted-block");
         unsortedBlock.style.height = arr[i] + "px";
         unsortedContainer.appendChild(unsortedBlock);
     }
 }
 
-//
-// End Create Divs
-
+// Test
+function bubbleDisplay(arr) {
+    for (let i = 0; i < 2; i++) {
+        let block = document.createElement("div");
+        block.classList.add("block");
+        block.setAttribute("id", "sorted-block");
+        block.innerHTML = arr[i];
+        sortedContainer.appendChild(block);
+    }
+}
 
 //
 // End of Functions
@@ -95,34 +96,20 @@ function createUnsortedDivs(arr) {
 //
 
 // Sort Buttons
-bubble.click();
 bubble.addEventListener("click", () => {
-    console.log("bubble");
-    bubble.classList.add("focus");
-    merge.classList.remove("focus");
-    heap.classList.remove("focus");
-    quick.classList.remove("focus");
+    bubbleDisplay(randomArray);
 }); 
 
 merge.addEventListener("click", () => {
-    bubble.classList.remove("focus");
-    merge.classList.add("focus");
-    heap.classList.remove("focus");
-    quick.classList.remove("focus");
+
 }); 
 
 heap.addEventListener("click", () => {
-    bubble.classList.remove("focus");
-    merge.classList.remove("focus");
-    heap.classList.add("focus");
-    quick.classList.remove("focus");
+
 }); 
 
 quick.addEventListener("click", () => {
-    bubble.classList.remove("focus");
-    merge.classList.remove("focus");
-    heap.classList.remove("focus");
-    quick.classList.add("focus");
+
 }); 
 
 random.addEventListener("click", () => {
@@ -133,20 +120,6 @@ clear.addEventListener("click", () => {
    clearList(); 
 });
 
-go.addEventListener("click", () => {
-    if (bubble.classList.contains("focus")) {
-        bubbleSort(randomArray);
-    }
-    if (merge.classList.contains("focus")) {
-        console.log("merge");
-    }
-    if (heap.classList.contains("focus")) {
-        console.log("heap");
-    }
-    if (quick.classList.contains("focus")) {
-        console.log("quick");
-    }
-});
 
 window.addEventListener("keydown", checkKeyPress, false);
 function checkKeyPress(key) {
