@@ -89,6 +89,10 @@ input::-webkit-inner-spin-button {
 
 .child-container {
     margin-top: 90px;
+    margin-bottom: 50px;
+    outline: 5px solid blue;
+    width: 500px;
+    height: 500px;
 }
 
 /* Footer Settings Container */
@@ -102,16 +106,16 @@ input::-webkit-inner-spin-button {
 }
 
 /* Created Elements */
-.created-unsorted {
+.created-block {
     width: 10px;
-    background-color: red;
     outline: 1px solid black;
     display: inline-block;
 }
 
-.created-sorted {
-    width: 10px;
+#sorted-block {
     background-color: skyblue;
-    outline: 1px solid black;
-    display: inline-block;
+}
+
+#unsorted-block {
+    background-color: red;
 }

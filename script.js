@@ -64,17 +64,19 @@ function bubbleSort(arr) {
 //
 function createDivs(arr) {
     for (let i = 0; i < arr.length; i++) {
-        let block = document.createElement("div");
-        block.classList.add("created-sorted");
-        block.style.height = arr[i] + "px";
-        sortedContainer.appendChild(block);
+        let sortedBlock = document.createElement("div");
+        sortedBlock.classList.add("created-block");
+        sortedBlock.setAttribute("id", "sorted-block");
+        sortedBlock.style.height = arr[i] + "px";
+        sortedContainer.appendChild(sortedBlock);
     }
 }
 
 function createUnsortedDivs(arr) {
     for (let i = 0; i < arr.length; i++) {
         let unsortedBlock = document.createElement("div");
-        unsortedBlock.classList.add("created-unsorted");
+        unsortedBlock.classList.add("created-block");
+        unsortedBlock.setAttribute("id", "unsorted-block");
         unsortedBlock.style.height = arr[i] + "px";
         unsortedContainer.appendChild(unsortedBlock);
     }
