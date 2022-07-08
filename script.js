@@ -1,9 +1,9 @@
 // Containers
 let container = document.getElementById("container");
-let unsortedContainer = document.getElementById("unsorted-container");
 
 // UI Stuff
 let speedSelect = document.getElementById("speed-selector");
+let speedValue = document.getElementById("speed-value");
 
 // Buttons 
 let random = document.getElementById("random");
@@ -19,6 +19,7 @@ let randomArray = [];
 // Extra 
 let finished = false;
 let speed = speedSelect.value;
+speedValue.innerHTML = speed;
 
 // Functions
 //
@@ -26,7 +27,7 @@ let speed = speedSelect.value;
 // Choose Speed
 speedSelect.oninput = function() {
     speed = speedSelect.value;
-    console.log(speed);
+    speedValue.innerHTML = speed;
 }
 
 // Create Random Array 
@@ -62,7 +63,7 @@ function createRandom() {
         bar.appendChild(barLabel);
     
         // Append "div" to "data-container div"
-        unsortedContainer.appendChild(bar);
+        container.appendChild(bar);
     }
 }
 
@@ -157,7 +158,7 @@ async function selectionSort() {
 // Clear List
 function clearList() {
     finished = true;
-    unsortedContainer.innerHTML = "";
+    container.innerHTML = "";
     randomArray = [];
 }
 

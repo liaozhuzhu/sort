@@ -49,6 +49,7 @@ body {
 }
 
 .slider {
+    transform: rotateY(180deg);
     -webkit-appearance: none;
     width: 200px;
     height: 10px;
@@ -107,16 +108,9 @@ body {
 
 /* Body Container */
 .main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 500px;
-}
-
-.child-container {
     width: auto;
-    height: auto;
+    height: 300px;
+    margin-bottom: 80px;
 }
 
 /* Footer Settings Container */
