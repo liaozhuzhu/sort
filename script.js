@@ -48,7 +48,7 @@ function createRandom() {
         bar.style.height = `${value * 3}px`;
     
         // Translate the bar towards positive X axis
-        //bar.style.transform = `translateX(${i * 3}px)`;
+        bar.style.transform = `translateX(${i * 30}px)`;
         
         // To create element "label"
         const barLabel = document.createElement("label");
