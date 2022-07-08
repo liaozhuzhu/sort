@@ -75,6 +75,27 @@ body {
     cursor: pointer;
 }
 
+#size-selector {
+    transform: none;
+}
+
+/* Settings Container */
+.settings {
+    height: 100px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #2af5ff;
+}
+
+/* Body Container */
+.main-container {
+    width: auto;
+    height: 300px;
+    margin-bottom: 80px;
+}
+
 /* Key */
 .info {
     display: flex;
@@ -104,23 +125,6 @@ body {
 
 #not-checked {
     background-color: red;
-}
-
-/* Body Container */
-.main-container {
-    width: auto;
-    height: 300px;
-    margin-bottom: 80px;
-}
-
-/* Footer Settings Container */
-.settings {
-    height: 100px;
-    padding: 5px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #60afff;
 }
 
 /* Created Elements */

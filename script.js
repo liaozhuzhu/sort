@@ -2,6 +2,9 @@
 let container = document.getElementById("container");
 
 // UI Stuff
+let sizeSelect = document.getElementById("size-selector");
+let sizeValue = document.getElementById("size-value");
+
 let speedSelect = document.getElementById("speed-selector");
 let speedValue = document.getElementById("speed-value");
 
@@ -18,12 +21,19 @@ let randomArray = [];
 
 // Extra 
 let finished = false;
+let size = sizeSelect.value;
+sizeValue.innerHTML = size;
 let speed = speedSelect.value;
 speedValue.innerHTML = speed;
 
 // Functions
 //
 
+// Choose Size
+sizeSelect.oninput = function() {
+    size = sizeSelect.value;
+    sizeValue.innerHTML = size;
+}
 // Choose Speed
 speedSelect.oninput = function() {
     speed = speedSelect.value;
@@ -32,8 +42,9 @@ speedSelect.oninput = function() {
 
 // Create Random Array 
 function createRandom() {
+    finished = true;
     clearList();
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < size; i++) {
 
         // To generate random values from 1 to 100
         const value = Math.floor(Math.random() * 100) + 1;
@@ -68,90 +79,113 @@ function createRandom() {
 }
 
 // Bubble Sort
-// function bubbleSwap(arr, x, y) {
-//     let temp = arr[x];
-//     arr[x] = arr[y];
-//     arr[y] = temp;
-// }
-
-// function bubbleSort(arr) {
-//     if (finished) {
-//         for (let i = 0; i < arr.length; i++) {
-//             for (let j = 0; j < arr.length-i; j++) {
-//                 if (arr[j] > arr[j+1]) {
-//                     bubbleSwap(arr, j, j+1);
-//                 }
-//             }
-//         }
-//         createDivs(arr);
-//         finished = false;
-//     }
-// }
+function swap(bars, i, j) {
+    var temp1 = bars[j].style.height;
+    var temp2 = bars[j].childNodes[0].innerText;
+    bars[j].style.height = bars[i].style.height;
+    bars[i].style.height = temp1;
+    bars[j].childNodes[0].innerText = bars[i].childNodes[0].innerText;
+    bars[i].childNodes[0].innerText = temp2;
+}
+async function bubbleSort() {
+    if (finished) {
+        finished = false;
+        let bars = document.querySelectorAll(".bar");
+        var min = 0;
+        for (let i = 0; i < bars.length; i++) {
+            for (let j = i+1; j < bars.length; j++) {
+                //Current Bar
+                bars[i].style.backgroundColor = "rgb(24, 190, 255)";
+                // Timer
+                await new Promise((resolve) =>
+                    setTimeout(() => {
+                    resolve();
+                    }, speed)
+                );
+                let val1 = parseInt(bars[i].childNodes[0].innerHTML);
+                let val2 = parseInt(bars[j].childNodes[0].innerHTML);
+                if (val1 > val2) {
+                    bars[j].style.backgroundColor = "green";
+                    await new Promise((resolve) =>
+                        setTimeout(() => {
+                        resolve();
+                        }, speed)
+                    );
+                    swap(bars, i, j);
+                }
+                else {
+                    bars[j].backgroundColor = "red";
+                }
+            }
+        }
+        finished = false;
+    }
+}
 
 // Selection Sort
 async function selectionSort() {
-    let bars = document.querySelectorAll(".bar");
-    // Assign 0 to min
-    var min = 0;
-    for (var i = 0; i < bars.length; i ++) {
-    
-        // Assign i to min
-        min = i;
-    
-        // Provide blue color to the current bar
-        bars[i].style.backgroundColor = "rgb(24, 190, 255)";
-
-        for (var j = i + 1; j < bars.length; j ++) {
-    
-            // Provide green color to the current smallest bar
-            bars[j].style.backgroundColor = "green";
-            
-            // To pause the execution of code
-            await new Promise((resolve) =>
-                setTimeout(() => {
-                resolve();
-                }, speed)
-            );
-    
-            // To store values of bars
-            let val1 = parseInt(bars[j].childNodes[0].innerHTML);
-            let val2 = parseInt(bars[min].childNodes[0].innerHTML);
-            
-            // Compare val1 & val2
-            if (val1 < val2) {
-                if (min !== i) {
-    
-                // Provide red color to the (min)th bar
-                bars[min].style.backgroundColor = "red";
-                }
-                min = j;
-            } 
-            else {
-                // Provide red color to the jth bar
-                bars[j].style.backgroundColor = "red";
-            }
-        }
-    
-        // To swap ith and (min)th bar
-        var temp1 = bars[min].style.height;
-        var temp2 = bars[min].childNodes[0].innerText;
-        bars[min].style.height = bars[i].style.height;
-        bars[i].style.height = temp1;
-        bars[min].childNodes[0].innerText = bars[i].childNodes[0].innerText;
-        bars[i].childNodes[0].innerText = temp2;
+    if (finished) {
+        finished = false;
+        let bars = document.querySelectorAll(".bar");
+        var min = 0;
+        for (var i = 0; i < bars.length; i ++) {
+            min = i;
         
-        // To pause the execution of code for 300 milliseconds
-        await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, 10)
-        );
+            // Current Bar
+            bars[i].style.backgroundColor = "rgb(24, 190, 255)";
     
-        // Provide red color to the (min-idx)th bar
-        bars[min].style.backgroundColor = "red";
-    
-        // Provide lightgreen color to global smallest bar
-        bars[i].style.backgroundColor = " rgb(49, 226, 13)";
+            for (var j = i + 1; j < bars.length; j ++) {
+        
+                // Smallest Bar
+                bars[j].style.backgroundColor = "green";
+                
+                // To pause the execution of code
+                await new Promise((resolve) =>
+                    setTimeout(() => {
+                    resolve();
+                    }, speed)
+                );
+        
+                // To store values of bars
+                let val1 = parseInt(bars[j].childNodes[0].innerHTML);
+                let val2 = parseInt(bars[min].childNodes[0].innerHTML);
+                
+                // Compare val1 & val2
+                if (val1 < val2) {
+                    if (min !== i) {
+        
+                    // Min(th) Bar
+                    bars[min].style.backgroundColor = "red";
+                    }
+                    min = j;
+                } 
+                else {
+                    // j(th) Bar
+                    bars[j].style.backgroundColor = "red";
+                }
+            }
+        
+            // To swap ith and (min)th bar
+            var temp1 = bars[min].style.height;
+            var temp2 = bars[min].childNodes[0].innerText;
+            bars[min].style.height = bars[i].style.height;
+            bars[i].style.height = temp1;
+            bars[min].childNodes[0].innerText = bars[i].childNodes[0].innerText;
+            bars[i].childNodes[0].innerText = temp2;
+            
+            // To pause after each iteration
+            await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 10)
+            );
+        
+            // Provide red color to the (min-idx)th bar
+            bars[min].style.backgroundColor = "red";
+        
+            // Provide lightgreen color to global smallest bar
+            bars[i].style.backgroundColor = " rgb(49, 226, 13)";
+        }
     }
 }
 
@@ -172,7 +206,7 @@ function clearList() {
 
 // Sort Buttons
 bubble.addEventListener("click", () => {
-
+    bubbleSort();
 }); 
 
 selection.addEventListener("click", () => {
