@@ -14,8 +14,9 @@ let merge = document.getElementById("merge");
 let heap = document.getElementById("heap");
 let quick = document.getElementById("quick");
 
-// Initilalize Empty Array 
+// Initilalize 
 let randomArray = [];
+let unsortedBlock;
 
 // Extra 
 let finished = false;
@@ -37,6 +38,7 @@ function createRandom() {
 // Clear List
 function clearList() {
     finished = true;
+    sortedContainer.innerHTML = "";
     unsortedContainer.innerHTML = "";
     randomArray = [];
 }
@@ -68,7 +70,7 @@ function bubbleSort(arr) {
 // Create Divs
 function createUnsortedDivs(arr) {
     for (let i = 0; i < arr.length; i++) {
-        let unsortedBlock = document.createElement("div");
+        unsortedBlock = document.createElement("div");
         unsortedBlock.classList.add("unsorted-block");
         unsortedBlock.setAttribute("id", "unsorted-block");
         unsortedBlock.style.height = arr[i] + "px";
@@ -78,13 +80,13 @@ function createUnsortedDivs(arr) {
 
 // Test
 function bubbleDisplay(arr) {
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < arr.length; i++) {
         let block = document.createElement("div");
         block.classList.add("block");
         block.setAttribute("id", "sorted-block");
         block.innerHTML = arr[i];
         sortedContainer.appendChild(block);
-    }
+    }   
 }
 
 //

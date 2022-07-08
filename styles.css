@@ -9,17 +9,6 @@ body {
     text-align: center;
 }
 
-/* Input Number */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.user-input {
-    padding: 10px;
-}
-
 /* Buttons */
 .user-button {
     width: 100px;
@@ -37,18 +26,8 @@ input::-webkit-inner-spin-button {
     background-color: skyblue;
 }
 
-#go {
-    background-color: lightgreen;
-    color: black;
-}
-
 #random {
     background-color: lightpink;
-    color: black;
-}
-
-#enter {
-    background-color: #28c2ff;
     color: black;
 }
 
@@ -79,8 +58,9 @@ input::-webkit-inner-spin-button {
 /* Body Container */
 .main-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     height: 500px;
 }
 
@@ -88,7 +68,7 @@ input::-webkit-inner-spin-button {
     margin-top: 90px;
     margin-bottom: 50px;
     outline: 5px solid blue;
-    width: 500px;
+    width: auto;
     height: auto;
 }
 
@@ -100,6 +80,7 @@ input::-webkit-inner-spin-button {
     justify-content: space-around;
     align-items: center;
     background-color: #60afff;
+    margin-bottom: 100px;
 }
 
 /* Created Elements */
