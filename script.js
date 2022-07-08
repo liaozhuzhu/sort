@@ -25,7 +25,7 @@ let finished = false;
 // Create Random Array 
 function createRandom() {
     clearList();
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 50; i++) {
 
         // To generate random values from 1 to 100
         const value = Math.floor(Math.random() * 100) + 1;
@@ -91,24 +91,24 @@ async function selectionSort() {
         // Assign i to min
         min = i;
     
-        // Provide darkblue color to the ith bar
-        bars[i].style.backgroundColor = "darkblue";
+        // Provide blue color to the current bar
+        bars[i].style.backgroundColor = "rgb(24, 190, 255)";
 
         for (var j = i + 1; j < bars.length; j ++) {
     
-            // Provide red color to the jth bar
-            bars[j].style.backgroundColor = "red";
+            // Provide green color to the current smallest bar
+            bars[j].style.backgroundColor = "green";
             
             // To pause the execution of code
             await new Promise((resolve) =>
                 setTimeout(() => {
                 resolve();
-                }, 500)
+                }, 50)
             );
     
             // To store values of bars
-            let val1 = bars[j].childNodes[0].innerHTML;
-            let val2 = bars[min].childNodes[0].innerHTML;
+            let val1 = bars[j].offsetHeight;
+            let val2 = bars[min].offsetHeight;
             console.log(val1);
             console.log(val2);
             
@@ -116,14 +116,14 @@ async function selectionSort() {
             if (val1 < val2) {
                 if (min !== i) {
     
-                // Provide skyblue color to the (min-idx)th bar
-                bars[min].style.backgroundColor = " rgb(24, 190, 255)";
+                // Provide red color to the (min)th bar
+                bars[min].style.backgroundColor = "red";
                 }
                 min = j;
             } 
             else {
-                // Provide skyblue color to the jth bar
-                bars[j].style.backgroundColor = " rgb(24, 190, 255)";
+                // Provide red color to the jth bar
+                bars[j].style.backgroundColor = "red";
             }
         }
     
@@ -142,10 +142,10 @@ async function selectionSort() {
         }, 5)
         );
     
-        // Provide skyblue color to the (min-idx)th bar
-        bars[min].style.backgroundColor = " rgb(24, 190, 255)";
+        // Provide red color to the (min-idx)th bar
+        bars[min].style.backgroundColor = "red";
     
-        // Provide lightgreen color to the ith bar
+        // Provide lightgreen color to global smallest bar
         bars[i].style.backgroundColor = " rgb(49, 226, 13)";
     }
 }

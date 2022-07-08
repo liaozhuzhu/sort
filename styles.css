@@ -33,6 +33,7 @@ body {
 
 #clear {
     background-color: red;
+    color: white;
 }
 /* End of Buttons */
 
@@ -53,6 +54,36 @@ body {
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
     border-bottom: 3px solid black;
+}
+
+/* Key */
+.info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.key {
+    width: 100px;
+    height: auto;
+    padding: 10px;
+    outline: 3px solid black;
+    border-radius: 50px;
+}
+
+#smallest {
+    background-color: rgb(49, 226, 13);
+}
+
+#current-index {
+    background-color: rgb(24, 190, 255);
+}
+
+#current-smallest {
+    background-color: green;
+}
+
+#not-checked {
+    background-color: red;
 }
 
 /* Body Container */
