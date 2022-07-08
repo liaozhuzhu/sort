@@ -3,7 +3,7 @@ let container = document.getElementById("container");
 let unsortedContainer = document.getElementById("unsorted-container");
 
 // UI Stuff
-let input = document.getElementById("number-input");
+let speedSelect = document.getElementById("speed-selector");
 
 // Buttons 
 let random = document.getElementById("random");
@@ -18,9 +18,16 @@ let randomArray = [];
 
 // Extra 
 let finished = false;
+let speed = speedSelect.value;
 
 // Functions
 //
+
+// Choose Speed
+speedSelect.oninput = function() {
+    speed = speedSelect.value;
+    console.log(speed);
+}
 
 // Create Random Array 
 function createRandom() {
@@ -40,7 +47,7 @@ function createRandom() {
         bar.style.height = `${value * 3}px`;
     
         // Translate the bar towards positive X axis
-        bar.style.transform = `translateX(${i * 3}px)`;
+        //bar.style.transform = `translateX(${i * 3}px)`;
         
         // To create element "label"
         const barLabel = document.createElement("label");
@@ -83,7 +90,6 @@ function createRandom() {
 // Selection Sort
 async function selectionSort() {
     let bars = document.querySelectorAll(".bar");
-    console.log(bars);
     // Assign 0 to min
     var min = 0;
     for (var i = 0; i < bars.length; i ++) {
@@ -103,14 +109,12 @@ async function selectionSort() {
             await new Promise((resolve) =>
                 setTimeout(() => {
                 resolve();
-                }, 1)
+                }, speed)
             );
     
             // To store values of bars
             let val1 = bars[j].offsetHeight;
             let val2 = bars[min].offsetHeight;
-            console.log(val1);
-            console.log(val2);
             
             // Compare val1 & val2
             if (val1 < val2) {
@@ -139,7 +143,7 @@ async function selectionSort() {
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
-        }, 5)
+        }, 1)
         );
     
         // Provide red color to the (min-idx)th bar
