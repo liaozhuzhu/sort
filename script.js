@@ -143,7 +143,7 @@ async function selectionSort() {
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
-        }, 1)
+        }, 10)
         );
     
         // Provide red color to the (min-idx)th bar
