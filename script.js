@@ -103,7 +103,7 @@ async function selectionSort() {
             await new Promise((resolve) =>
                 setTimeout(() => {
                 resolve();
-                }, 50)
+                }, 1)
             );
     
             // To store values of bars
