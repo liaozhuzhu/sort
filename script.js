@@ -10,17 +10,13 @@ let speedValue = document.getElementById("speed-value");
 
 // Buttons 
 let random = document.getElementById("random");
-let clear = document.getElementById("clear");
 let bubble = document.getElementById("bubble");
 let selection = document.getElementById("selection");
 let heap = document.getElementById("heap");
 let quick = document.getElementById("quick");
-
-// Initilalize 
-let randomArray = [];
+let buttons = document.getElementsByTagName("button");
 
 // Extra 
-let finished = false;
 let size = sizeSelect.value;
 sizeValue.innerHTML = size;
 let speed = speedSelect.value;
@@ -38,44 +34,6 @@ sizeSelect.oninput = function() {
 speedSelect.oninput = function() {
     speed = speedSelect.value;
     speedValue.innerHTML = speed;
-}
-
-// Create Random Array 
-function createRandom() {
-    finished = true;
-    clearList();
-    for (let i = 0; i < size; i++) {
-
-        // To generate random values from 1 to 100
-        const value = Math.floor(Math.random() * 100) + 1;
-        
-        // To create element "div"
-        const bar = document.createElement("div");
-    
-        // To add class "bar" to "div"
-        bar.classList.add("bar");
-    
-        // Provide height to the bar
-        bar.style.height = `${value * 3}px`;
-    
-        // Translate the bar towards positive X axis
-        //bar.style.transform = `translateX(${i * 30}px)`;
-        
-        // To create element "label"
-        const barLabel = document.createElement("label");
-    
-        // To add class "bar_id" to "label"
-        barLabel.classList.add("bar-label");
-        
-        // Assign value to "label"
-	    barLabel.innerHTML = value;
-
-        // Append "Label" to "div"  
-        bar.appendChild(barLabel);
-    
-        // Append "div" to "data-container div"
-        container.appendChild(bar);
-    }
 }
 
 // Bubble Sort
@@ -99,15 +57,14 @@ function swap(i, j) {
 }
 
 async function bubbleSort() {
-    bubble.disabled = true;
+    buttonToggle(false);
     let bars = document.querySelectorAll(".bar");
 
-    for (let i = 0; i < bars.length; i += 1) {
-        for (let j = 0; j < bars.length - i - 1; j += 1) {
+    for (let i = 0; i < bars.length; i ++) {
+        for (let j = 0; j < bars.length - i - 1; j ++) {
             bars[j].style.backgroundColor = "rgb(24, 190, 255)";
             bars[j + 1].style.backgroundColor = "green";
   
-            // To wait for .1 sec
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
@@ -131,14 +88,13 @@ async function bubbleSort() {
   
         //changing the color of greatest element 
         //found in the above traversal
-        bars[bars.length - i - 1]
-                .style.backgroundColor = "rgb(49, 226, 13)";
+        bars[bars.length - i - 1].style.backgroundColor = "rgb(49, 226, 13)";
     }
 }
 
 // Selection Sort
 async function selectionSort() {
-    selection.disabled = true;
+    buttonToggle(false);
 
     finished = false;
     let bars = document.querySelectorAll(".bar");
@@ -205,9 +161,60 @@ async function selectionSort() {
 
 // Clear List
 function clearList() {
-    finished = true;
+    buttonToggle(true);
     container.innerHTML = "";
-    randomArray = [];
+}
+
+// Toggle Buttons 
+function buttonToggle(on) {
+    if (on) {
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].disabled = false;
+        }
+    }
+    else {
+        console.log(buttons);
+        for (let i = 1; i < buttons.length; i++) {
+            buttons[i].disabled = true;
+        }
+    }
+}
+
+// Create Random Array 
+function createRandom() {
+    clearList();
+    for (let i = 0; i < size; i++) {
+
+        // To generate random values from 1 to 100
+        const value = Math.floor(Math.random() * 100) + 1;
+        
+        // To create element "div"
+        const bar = document.createElement("div");
+    
+        // To add class "bar" to "div"
+        bar.classList.add("bar");
+    
+        // Provide height to the bar
+        bar.style.height = `${value * 3}px`;
+    
+        // Translate the bar towards positive X axis
+        //bar.style.transform = `translateX(${i * 30}px)`;
+        
+        // To create element "label"
+        const barLabel = document.createElement("label");
+    
+        // To add class "bar_id" to "label"
+        barLabel.classList.add("bar-label");
+        
+        // Assign value to "label"
+	    barLabel.innerHTML = value;
+
+        // Append "Label" to "div"  
+        bar.appendChild(barLabel);
+    
+        // Append "div" to "data-container div"
+        container.appendChild(bar);
+    }
 }
 
 //
@@ -239,11 +246,6 @@ random.addEventListener("click", () => {
     createRandom();
 });
 
-clear.addEventListener("click", () => {
-   clearList(); 
-});
-
-
 window.addEventListener("keydown", checkKeyPress, false);
 function checkKeyPress(key) {
     if (key.key == "Enter") {
@@ -252,3 +254,7 @@ function checkKeyPress(key) {
 }
 //
 // End of Buttons
+
+window.onload = () => {
+    createRandom();
+}

@@ -31,11 +31,6 @@ body {
     background-color: lightpink;
     color: black;
 }
-
-#clear {
-    background-color: red;
-    color: white;
-}
 /* End of Buttons */
 
 /* Input Container */
@@ -140,5 +135,5 @@ body {
     display: inline-block;
     background-color: red;
     margin: 3px;
-    transition: 0.2s all ease;
+    transition: 0.3s all ease;
 }
