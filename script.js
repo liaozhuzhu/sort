@@ -29,6 +29,7 @@ speedValue.innerHTML = speed;
 sizeSelect.oninput = function() {
     size = sizeSelect.value;
     sizeValue.innerHTML = size;
+    createRandom();
 }
 // Choose Speed
 speedSelect.oninput = function() {
