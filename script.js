@@ -61,8 +61,8 @@ async function bubbleSort() {
     buttonToggle(false);
     let bars = document.querySelectorAll(".bar");
 
-    for (let i = 0; i < bars.length; i ++) {
-        for (let j = 0; j < bars.length - i - 1; j ++) {
+    for (let i = 0; i < bars.length; i++) {
+        for (let j = 0; j < bars.length - i - 1; j++) {
             bars[j].style.backgroundColor = "rgb(24, 190, 255)";
             bars[j + 1].style.backgroundColor = "green";
   
