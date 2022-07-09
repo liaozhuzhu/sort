@@ -60,7 +60,7 @@ function swap(i, j) {
 async function bubbleSort() {
     buttonToggle(false);
     let bars = document.querySelectorAll(".bar");
-
+    console.log(bars.length);
     for (let i = 0; i < bars.length; i++) {
         for (let j = 0; j < bars.length - i - 1; j++) {
             bars[j].style.backgroundColor = "rgb(24, 190, 255)";
@@ -72,9 +72,8 @@ async function bubbleSort() {
                 }, speed)
             );
   
-            let val1 = Number(bars[j].childNodes[0].innerHTML);
-            let val2 = Number(bars[j + 1]
-                        .childNodes[0].innerHTML);
+            let val1 = parseInt(bars[j].innerHTML);
+            let val2 = parseInt(bars[j + 1].innerHTML);
   
             // To compare value of two blocks
             if (val1 > val2) {
@@ -86,9 +85,8 @@ async function bubbleSort() {
             bars[j].style.backgroundColor = "red";
             bars[j + 1].style.backgroundColor = "red";
         }
-  
-        //changing the color of greatest element 
-        //found in the above traversal
+        
+        // sorted color (light green)
         bars[bars.length - i - 1].style.backgroundColor = "rgb(49, 226, 13)";
     }
 }
@@ -119,8 +117,8 @@ async function selectionSort() {
             );
     
             // To store values of bars
-            let val1 = parseInt(bars[j].childNodes[0].innerHTML);
-                let val2 = parseInt(bars[min].childNodes[0].innerHTML);
+            let val1 = parseInt(bars[j].innerHTML);
+            let val2 = parseInt(bars[min].innerHTML);
                
                // Compare val1 & val2
                if (val1 < val2) {
@@ -131,7 +129,7 @@ async function selectionSort() {
                     }
                    min = j;
                 } 
-               else {
+                else {
                    // j(th) Bar
                     bars[j].style.backgroundColor = "red";
             }
@@ -139,11 +137,11 @@ async function selectionSort() {
     
         // To swap ith and (min)th bar
         let temp1 = bars[min].style.height;
-        let temp2 = bars[min].childNodes[0].innerText;
+        let temp2 = bars[min].innerHTML;
         bars[min].style.height = bars[i].style.height;
         bars[i].style.height = temp1;
-        bars[min].childNodes[0].innerText = bars[i].childNodes[0].innerText;
-        bars[i].childNodes[0].innerText = temp2;
+        bars[min].innerHTML = bars[i].innerHTML;
+        bars[i].innerHTML = temp2;
             
         // To pause after each iteration
         await new Promise((resolve) =>
@@ -197,21 +195,9 @@ function createRandom() {
     
         // Provide height to the bar
         bar.style.height = `${value * 3}px`;
-    
-        // Translate the bar towards positive X axis
-        //bar.style.transform = `translateX(${i * 30}px)`;
-        
-        // To create element "label"
-        const barLabel = document.createElement("label");
-    
-        // To add class "bar_id" to "label"
-        barLabel.classList.add("bar-label");
-        
-        // Assign value to "label"
-	    barLabel.innerHTML = value;
 
-        // Append "Label" to "div"  
-        bar.appendChild(barLabel);
+        // Provide bar value
+        bar.innerHTML = value;
     
         // Append "div" to "data-container div"
         container.appendChild(bar);
