@@ -51,7 +51,7 @@ body {
 .slider {
     transform: rotateY(180deg);
     -webkit-appearance: none;
-    width: 200px;
+    width: 175px;
     height: 10px;
     border-radius: 5px;
     background: #d3d3d3;
@@ -79,14 +79,20 @@ body {
     transform: none;
 }
 
-/* Settings Container */
-.settings {
+/* algorithms Container */
+.algorithms {
     height: 100px;
     padding: 5px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: #2af5ff;
+    border-top: 3px solid black;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 30px;
 }
 
 /* Body Container */

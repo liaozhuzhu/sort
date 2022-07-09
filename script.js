@@ -79,19 +79,19 @@ function createRandom() {
 }
 
 // Bubble Sort
-function swap(el1, el2) {
+function swap(i, j) {
     return new Promise((resolve) => {
   
         // For exchanging styles of two blocks
-        var temp = el1.style.transform;
-        el1.style.transform = el2.style.transform;
-        el2.style.transform = temp;
+        let temp = i.style.transform;
+        i.style.transform = j.style.transform;
+        j.style.transform = temp;
   
         window.requestAnimationFrame(function() {
   
             // For waiting for .25 sec
             setTimeout(() => {
-                container.insertBefore(el2, el1);
+                container.insertBefore(j, i);
                 resolve();
             }, speed);
         });
@@ -99,11 +99,11 @@ function swap(el1, el2) {
 }
 
 async function bubbleSort() {
-
+    bubble.disabled = true;
     let bars = document.querySelectorAll(".bar");
 
-    for (var i = 0; i < bars.length; i += 1) {
-        for (var j = 0; j < bars.length - i - 1; j += 1) {
+    for (let i = 0; i < bars.length; i += 1) {
+        for (let j = 0; j < bars.length - i - 1; j += 1) {
             bars[j].style.backgroundColor = "rgb(24, 190, 255)";
             bars[j + 1].style.backgroundColor = "green";
   
@@ -114,12 +114,12 @@ async function bubbleSort() {
                 }, speed)
             );
   
-            var value1 = Number(bars[j].childNodes[0].innerHTML);
-            var value2 = Number(bars[j + 1]
+            let val1 = Number(bars[j].childNodes[0].innerHTML);
+            let val2 = Number(bars[j + 1]
                         .childNodes[0].innerHTML);
   
             // To compare value of two blocks
-            if (value1 > value2) {
+            if (val1 > val2) {
                 await swap(bars[j], bars[j + 1]);
                 bars = document.querySelectorAll(".bar");
             }
@@ -138,68 +138,68 @@ async function bubbleSort() {
 
 // Selection Sort
 async function selectionSort() {
-    if (finished) {
-        finished = false;
-        let bars = document.querySelectorAll(".bar");
-        var min = 0;
-        for (var i = 0; i < bars.length; i ++) {
-            min = i;
+    selection.disabled = true;
+
+    finished = false;
+    let bars = document.querySelectorAll(".bar");
+    let min = 0;
+    for (let i = 0; i < bars.length; i ++) {
+        min = i;
         
-            // Current Bar
-            bars[i].style.backgroundColor = "rgb(24, 190, 255)";
+        // Current Bar
+        bars[i].style.backgroundColor = "rgb(24, 190, 255)";
     
-            for (var j = i + 1; j < bars.length; j ++) {
-        
-                // Smallest Bar
-                bars[j].style.backgroundColor = "green";
-                
-                // To pause the execution of code
-                await new Promise((resolve) =>
-                    setTimeout(() => {
-                    resolve();
-                    }, speed)
-                );
-        
-                // To store values of bars
-                let val1 = parseInt(bars[j].childNodes[0].innerHTML);
-                let val2 = parseInt(bars[min].childNodes[0].innerHTML);
-                
-                // Compare val1 & val2
-                if (val1 < val2) {
-                    if (min !== i) {
-        
-                    // Min(th) Bar
-                    bars[min].style.backgroundColor = "red";
-                    }
-                    min = j;
-                } 
-                else {
-                    // j(th) Bar
-                    bars[j].style.backgroundColor = "red";
-                }
-            }
-        
-            // To swap ith and (min)th bar
-            var temp1 = bars[min].style.height;
-            var temp2 = bars[min].childNodes[0].innerText;
-            bars[min].style.height = bars[i].style.height;
-            bars[i].style.height = temp1;
-            bars[min].childNodes[0].innerText = bars[i].childNodes[0].innerText;
-            bars[i].childNodes[0].innerText = temp2;
+        for (let j = i + 1; j < bars.length; j ++) {
+    
+            // Smallest Bar
+            bars[j].style.backgroundColor = "green";
             
-            // To pause after each iteration
+            // To pause the execution of code
             await new Promise((resolve) =>
-            setTimeout(() => {
+                setTimeout(() => {
                 resolve();
-            }, 10)
+                }, speed)
             );
-        
-            // Provide red color to the (min-idx)th bar
-            bars[min].style.backgroundColor = "red";
-        
-            // Provide lightgreen color to global smallest bar
-            bars[i].style.backgroundColor = " rgb(49, 226, 13)";
+    
+            // To store values of bars
+            let val1 = parseInt(bars[j].childNodes[0].innerHTML);
+                let val2 = parseInt(bars[min].childNodes[0].innerHTML);
+               
+               // Compare val1 & val2
+               if (val1 < val2) {
+                   if (min !== i) {
+    
+                    // Min(th) Bar
+                   bars[min].style.backgroundColor = "red";
+                    }
+                   min = j;
+                } 
+               else {
+                   // j(th) Bar
+                    bars[j].style.backgroundColor = "red";
+            }
         }
+    
+        // To swap ith and (min)th bar
+        let temp1 = bars[min].style.height;
+        let temp2 = bars[min].childNodes[0].innerText;
+        bars[min].style.height = bars[i].style.height;
+        bars[i].style.height = temp1;
+        bars[min].childNodes[0].innerText = bars[i].childNodes[0].innerText;
+        bars[i].childNodes[0].innerText = temp2;
+            
+        // To pause after each iteration
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, 10)
+        );
+        
+        // Provide red color to the (min-idx)th bar
+        bars[min].style.backgroundColor = "red";
+        
+        // Provide lightgreen color to global smallest bar
+        bars[i].style.backgroundColor = " rgb(49, 226, 13)";
     }
 }
 
