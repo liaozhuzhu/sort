@@ -79,46 +79,60 @@ function createRandom() {
 }
 
 // Bubble Sort
-function swap(bars, i, j) {
-    var temp1 = bars[j].style.height;
-    var temp2 = bars[j].childNodes[0].innerText;
-    bars[j].style.height = bars[i].style.height;
-    bars[i].style.height = temp1;
-    bars[j].childNodes[0].innerText = bars[i].childNodes[0].innerText;
-    bars[i].childNodes[0].innerText = temp2;
+function swap(el1, el2) {
+    return new Promise((resolve) => {
+  
+        // For exchanging styles of two blocks
+        var temp = el1.style.transform;
+        el1.style.transform = el2.style.transform;
+        el2.style.transform = temp;
+  
+        window.requestAnimationFrame(function() {
+  
+            // For waiting for .25 sec
+            setTimeout(() => {
+                container.insertBefore(el2, el1);
+                resolve();
+            }, speed);
+        });
+    });
 }
+
 async function bubbleSort() {
-    if (finished) {
-        finished = false;
-        let bars = document.querySelectorAll(".bar");
-        var min = 0;
-        for (let i = 0; i < bars.length; i++) {
-            for (let j = i+1; j < bars.length; j++) {
-                //Current Bar
-                bars[i].style.backgroundColor = "rgb(24, 190, 255)";
-                // Timer
-                await new Promise((resolve) =>
-                    setTimeout(() => {
+
+    let bars = document.querySelectorAll(".bar");
+
+    for (var i = 0; i < bars.length; i += 1) {
+        for (var j = 0; j < bars.length - i - 1; j += 1) {
+            bars[j].style.backgroundColor = "rgb(24, 190, 255)";
+            bars[j + 1].style.backgroundColor = "green";
+  
+            // To wait for .1 sec
+            await new Promise((resolve) =>
+                setTimeout(() => {
                     resolve();
-                    }, speed)
-                );
-                let val1 = parseInt(bars[i].childNodes[0].innerHTML);
-                let val2 = parseInt(bars[j].childNodes[0].innerHTML);
-                if (val1 > val2) {
-                    bars[j].style.backgroundColor = "green";
-                    await new Promise((resolve) =>
-                        setTimeout(() => {
-                        resolve();
-                        }, speed)
-                    );
-                    swap(bars, i, j);
-                }
-                else {
-                    bars[j].backgroundColor = "red";
-                }
+                }, speed)
+            );
+  
+            var value1 = Number(bars[j].childNodes[0].innerHTML);
+            var value2 = Number(bars[j + 1]
+                        .childNodes[0].innerHTML);
+  
+            // To compare value of two blocks
+            if (value1 > value2) {
+                await swap(bars[j], bars[j + 1]);
+                bars = document.querySelectorAll(".bar");
             }
+  
+            // Changing the color to the previous one
+            bars[j].style.backgroundColor = "red";
+            bars[j + 1].style.backgroundColor = "red";
         }
-        finished = false;
+  
+        //changing the color of greatest element 
+        //found in the above traversal
+        bars[bars.length - i - 1]
+                .style.backgroundColor = "rgb(49, 226, 13)";
     }
 }
 
