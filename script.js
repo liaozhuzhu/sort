@@ -12,7 +12,7 @@ let speedValue = document.getElementById("speed-value");
 let random = document.getElementById("random");
 let bubble = document.getElementById("bubble");
 let selection = document.getElementById("selection");
-let heap = document.getElementById("heap");
+let merge = document.getElementById("merge");
 let quick = document.getElementById("quick");
 let buttons = document.getElementsByTagName("button");
 
@@ -40,15 +40,7 @@ speedSelect.oninput = function() {
 // Bubble Sort
 function swap(i, j) {
     return new Promise((resolve) => {
-  
-        // For exchanging styles of two blocks
-        let temp = i.style.transform;
-        i.style.transform = j.style.transform;
-        j.style.transform = temp;
-  
         window.requestAnimationFrame(function() {
-  
-            // For waiting for .25 sec
             setTimeout(() => {
                 container.insertBefore(j, i);
                 resolve();
@@ -60,7 +52,6 @@ function swap(i, j) {
 async function bubbleSort() {
     buttonToggle(false);
     let bars = document.querySelectorAll(".bar");
-    console.log(bars.length);
     for (let i = 0; i < bars.length; i++) {
         for (let j = 0; j < bars.length - i - 1; j++) {
             bars[j].style.backgroundColor = "rgb(24, 190, 255)";
@@ -78,6 +69,7 @@ async function bubbleSort() {
             // To compare value of two blocks
             if (val1 > val2) {
                 await swap(bars[j], bars[j + 1]);
+                // Re iteration
                 bars = document.querySelectorAll(".bar");
             }
   
@@ -172,7 +164,6 @@ function buttonToggle(on) {
         }
     }
     else {
-        console.log(buttons);
         for (let i = 1; i < buttons.length; i++) {
             buttons[i].disabled = true;
         }
@@ -221,8 +212,8 @@ selection.addEventListener("click", () => {
     selectionSort();
 }); 
 
-heap.addEventListener("click", () => {
-
+merge.addEventListener("click", () => {
+    mergeSort();
 }); 
 
 quick.addEventListener("click", () => {
