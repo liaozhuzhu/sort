@@ -21,6 +21,7 @@ let size = sizeSelect.value;
 sizeValue.innerHTML = size;
 let speed = speedSelect.value;
 speedValue.innerHTML = speed;
+let randomArr = [1,5,3,32,4,3,54]
 
 // Functions
 //
@@ -150,6 +151,58 @@ async function selectionSort() {
     }
 }
 
+// Merge Sort 
+function mergeSort(arr) {
+    container.innerHTML = arr;    
+    let len = arr.length;
+    if (len <= 1) {
+        return;
+    }
+    let mid = len / 2;
+    let left = [mid];
+    let right = [len - mid];
+    for (let i = 0; i < mid; i++) {
+        left[i] = arr[i];
+    }
+    for (let i = mid; i < len; i++) {
+        right[i - mid] = arr[i];
+    }
+
+    mergeSort(left);
+    mergeSort(right);
+
+    mergeHelper(arr, left, right);
+}
+
+function mergeHelper(arr, left, right) {
+    leftLen = left.lenght;
+    rightLen = right.length;
+    let i, j, k = 0;
+    while (i < leftLen && j < rightLen) {
+        if (left[i] <= right[j]) {
+            arr[k] = left[i];
+            i++;
+        }
+        else {
+            arr[k] = right[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < leftLen) {
+        arr[k] = left[i];
+        i++;
+        k++;
+    }
+    while (j < rightLen) {
+        arr[k] = right[j];
+        j++;
+        k++;
+    }
+    console.log(arr);
+    container.innerHTML = arr;
+}
+
 // Clear List
 function clearList() {
     buttonToggle(true);
@@ -213,7 +266,7 @@ selection.addEventListener("click", () => {
 }); 
 
 merge.addEventListener("click", () => {
-    mergeSort();
+    mergeSort(randomArr);
 }); 
 
 quick.addEventListener("click", () => {
