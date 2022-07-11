@@ -149,58 +149,7 @@ async function selectionSort() {
 }
 
 // Merge Sort 
-function mergeHelper(left, right) {
-    let arr = [];
 
-    while (left.length && right.length) {
-        for (let i = 0; i < left.length; i++) {
-            left[i].style.backgroundColor = "green";
-        }
-        for (let i = 0; i < right.length; i++) {
-            right[i].style.backgroundColor = "green";
-        }
-        leftValue = parseInt(left[0].innerHTML);
-        rightValue = parseInt(right[0].innerHTML);
-        if (leftValue < rightValue) {
-            arr.push(left.shift());
-            left[0].style.backgroundColor = "rgb(49, 226, 13)";
-        }
-        else {
-            arr.push(right.shift());
-            right[0].style.backgroundColor = "rgb(49, 226, 13)";
-        }
-    }
-
-    while(left.length) {
-        arr.push(left.shift());
-        left[0].style.backgroundColor = "rgb(49, 226, 13)";
-    }
-
-    while(right.length) {
-        arr.push(right.shift());
-        right[0].style.backgroundColor = "rgb(49, 226, 13)";
-    }  
-
-    return arr;
-}
-
-function mergeSort(arr) {
-    buttonToggle(false);
-    
-    if (arr.length <= 1) {
-        return arr;
-    }
-    let mid = Math.floor(arr.length / 2);
-    let left = [];
-    let right = [];
-    for (let i = 0; i < mid; i++) {
-        left.push(arr[i]);
-    }
-    for (let i = mid; i < arr.length; i++) {
-        right.push(arr[i]);
-    }
-    return mergeHelper(mergeSort(left), mergeSort(right));
-}
 
 // Clear List
 function clearList() {
