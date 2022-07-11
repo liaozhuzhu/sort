@@ -21,7 +21,7 @@ let size = sizeSelect.value;
 sizeValue.innerHTML = size;
 let speed = speedSelect.value;
 speedValue.innerHTML = speed;
-let randomArr = [1,5,3,32,4,3,54]
+let randomArr = [1,5,3,10, 2];
 
 // Functions
 //
@@ -87,8 +87,6 @@ async function bubbleSort() {
 // Selection Sort
 async function selectionSort() {
     buttonToggle(false);
-
-    finished = false;
     let bars = document.querySelectorAll(".bar");
     let min = 0;
     for (let i = 0; i < bars.length; i ++) {
@@ -154,24 +152,22 @@ async function selectionSort() {
 // Merge Sort 
 function mergeHelp(left, right) {
     let arr = []
-    let i = 0;
-    let j = 0;
 
     while (left.length && right.length) {
-        let leftNum = left[i];
-        let rightNum = right[j];
-        if (leftNum < rightNum) {
-            arr.push(leftNum);
-            i++;
+        if (left[0] < right[0]) {
+            arr.push(left.shift());
         }
         else {
-            arr.push(rightNum);
-            j++;
+            arr.push(right.shift());
         }
     }
-    
-    return [...arr, ...left.slice[i], ...right.slice[j]];
-
+    while(left.length) {
+        arr.push(left.shift());
+    }
+    while(right.length) {
+        arr.push(right.shift());
+    }
+    return arr;
 }
 
 function mergeSort(arr) {
@@ -181,10 +177,10 @@ function mergeSort(arr) {
     }
     let mid = Math.floor(len / 2);
     let left = arr.slice(0, mid);
-    let right = arr.slice(mid);
-
+    let right = arr.slice(mid, len);
     return mergeHelp(mergeSort(left), mergeSort(right));
 }
+
 
 // Clear List
 function clearList() {
@@ -249,9 +245,7 @@ selection.addEventListener("click", () => {
 }); 
 
 merge.addEventListener("click", () => {
-    container.innerHTML = randomArr;
-    mergeSort(randomArr);
-    container.innerHTML += "Sorted: " + randomArr;
+    console.log(mergeSort(randomArr));
 }); 
 
 quick.addEventListener("click", () => {
