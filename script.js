@@ -150,25 +150,37 @@ async function selectionSort() {
 
 // Merge Sort 
 function mergeHelper(left, right) {
-    console.log(left);
     let arr = [];
 
     while (left.length && right.length) {
-        let leftValue = parseInt(left[0].innerHTML);
-        let rightValue = parseInt(right[0].innerHTML);
+        for (let i = 0; i < left.length; i++) {
+            left[i].style.backgroundColor = "green";
+        }
+        for (let i = 0; i < right.length; i++) {
+            right[i].style.backgroundColor = "green";
+        }
+        leftValue = parseInt(left[0].innerHTML);
+        rightValue = parseInt(right[0].innerHTML);
         if (leftValue < rightValue) {
             arr.push(left.shift());
+            left[0].style.backgroundColor = "rgb(49, 226, 13)";
         }
         else {
             arr.push(right.shift());
+            right[0].style.backgroundColor = "rgb(49, 226, 13)";
         }
     }
+
     while(left.length) {
         arr.push(left.shift());
+        left[0].style.backgroundColor = "rgb(49, 226, 13)";
     }
+
     while(right.length) {
         arr.push(right.shift());
-    }   
+        right[0].style.backgroundColor = "rgb(49, 226, 13)";
+    }  
+
     return arr;
 }
 
