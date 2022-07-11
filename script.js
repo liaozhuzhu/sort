@@ -22,6 +22,10 @@ sizeValue.innerHTML = size;
 let speed = speedSelect.value;
 speedValue.innerHTML = speed;
 
+// Colors 
+let skyeblue = "rgb(24, 190, 255)";
+let lightgreen = "rgb(49, 226, 13)";
+
 // Functions
 //
 
@@ -54,7 +58,7 @@ async function bubbleSort() {
     let bars = document.querySelectorAll(".bar");
     for (let i = 0; i < bars.length; i++) {
         for (let j = 0; j < bars.length - i - 1; j++) {
-            bars[j].style.backgroundColor = "rgb(24, 190, 255)";
+            bars[j].style.backgroundColor = skyeblue;
             bars[j + 1].style.backgroundColor = "green";
   
             await new Promise((resolve) =>
@@ -79,7 +83,7 @@ async function bubbleSort() {
         }
         
         // sorted color (light green)
-        bars[bars.length - i - 1].style.backgroundColor = "rgb(49, 226, 13)";
+        bars[bars.length - i - 1].style.backgroundColor = lightgreen;
     }
 }
 
@@ -92,7 +96,7 @@ async function selectionSort() {
         min = i;
         
         // Current Bar
-        bars[i].style.backgroundColor = "rgb(24, 190, 255)";
+        bars[i].style.backgroundColor = skyeblue;
     
         for (let j = i + 1; j < bars.length; j ++) {
     
@@ -144,12 +148,57 @@ async function selectionSort() {
         bars[min].style.backgroundColor = "red";
         
         // Provide lightgreen color to global smallest bar
-        bars[i].style.backgroundColor = " rgb(49, 226, 13)";
+        bars[i].style.backgroundColor = lightgreen;
     }
 }
 
 // Merge Sort 
-
+async function mergeArray(leftArr, rightArr) {
+    let leftValue = parseInt(leftArr[0].innerHTML);
+    let rightValue = parseInt(rightArr[0].innerHTML);
+    leftArr[0].style.backgroundColor = skyeblue;
+    await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+    );
+    rightArr[0].style.backgroundColor = "green";
+    if (rightValue < leftValue) {
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+        container.insertBefore(rightArr[0], leftArr[0]);
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+        leftArr[0].style.backgroundColor = lightgreen;
+        rightArr[0].style.backgroundColor = lightgreen;
+    }
+    else {
+        leftArr[0].style.backgroundColor = lightgreen;
+        rightArr[0].style.backgroundColor = lightgreen;
+    }
+}
+function mergeSort(arr) {
+    buttonToggle(false);
+    let leftArr = [];
+    let rightArr = [];
+    if (arr.length <= 1) {
+        return arr;
+    }
+    let midPoint = Math.floor(arr.length / 2);
+    for (let i = 0; i < midPoint; i++) {
+        leftArr.push(arr[i]);
+    }
+    for (let i = midPoint; i < arr.length; i++) {
+        rightArr.push(arr[i]);
+    }
+    mergeArray (mergeSort(leftArr),mergeSort(rightArr));
+}
 
 // Clear List
 function clearList() {
