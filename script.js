@@ -21,7 +21,6 @@ let size = sizeSelect.value;
 sizeValue.innerHTML = size;
 let speed = speedSelect.value;
 speedValue.innerHTML = speed;
-let bars = document.querySelectorAll(".bar");
 
 // Colors 
 let skyeblue = "rgb(24, 190, 255)";
@@ -56,7 +55,7 @@ function swap(i, j) {
 
 async function bubbleSort() {
     buttonToggle(false);
-    bars = document.querySelectorAll(".bar");
+    let bars = document.querySelectorAll(".bar");
     for (let i = 0; i < bars.length; i++) {
         for (let j = 0; j < bars.length - i - 1; j++) {
             bars[j].style.backgroundColor = skyeblue;
@@ -91,7 +90,7 @@ async function bubbleSort() {
 // Selection Sort
 async function selectionSort() {
     buttonToggle(false);
-    bars = document.querySelectorAll(".bar");
+    let bars = document.querySelectorAll(".bar");
     let min = 0;
     for (let i = 0; i < bars.length; i ++) {
         min = i;
@@ -155,21 +154,22 @@ async function selectionSort() {
 
 // Merge Sort 
 async function mergeArray(leftArr, rightArr) {
-    console.log(leftArr[0]);
-    console.log(rightArr[0]);
-    leftArr[0].style.backgroundColor = skyeblue;
-    await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-    );
-    rightArr[0].style.backgroundColor = "green";
-    await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-        );
+    console.log("Left" + leftArr[0].innerHTML);
+    console.log("Right" + rightArr[0].innerHTML);
+
     while (leftArr.length && rightArr.length) {
+        leftArr[0].style.backgroundColor = skyeblue;
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, speed)
+        );
+        rightArr[0].style.backgroundColor = "green";
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, speed)
+            );
         let leftValue = parseInt(leftArr[0].innerHTML);
         let rightValue = parseInt(rightArr[0].innerHTML);
         if (rightValue < leftValue) {
@@ -187,20 +187,24 @@ async function mergeArray(leftArr, rightArr) {
             leftArr[0].style.backgroundColor = lightgreen;
             rightArr[0].style.backgroundColor = lightgreen;
             leftArr = leftArr.slice(1);
+            rightArr = rightArr.slice(1);
         }
     }
+    console.log(rightArr);
     
-    // while (leftArr.lenght) {
-    //     container.insertBefore(leftArr[0], bars[0]);
-    //     leftArr[0].style.backgroundColor = lightgreen;
-    //     leftArr = leftArr.slice(1);
-    // }
-    // while (rightArr.length) {
-    //     container.insertBefore(rightArr[0], bars[0]);
-    //     rightArr[0].style.backgroundColor = lightgreen;
-    //     console.log(rightArr);
-    //     rightArr = rightArr.slice(1);
-    // }
+    while (leftArr.lenght) {
+        bars = document.querySelectorAll(".bar");
+        container.insertBefore(leftArr[0], bars[0]);
+        leftArr[0].style.backgroundColor = lightgreen;
+        leftArr = leftArr.slice(1);
+    }
+    while (rightArr.length) {
+        bars = document.querySelectorAll(".bar");
+        container.insertBefore(rightArr[0], bars[0]);
+        rightArr[0].style.backgroundColor = lightgreen;
+        console.log("RIGHT: " + rightArr);
+        rightArr = rightArr.slice(1);
+    }
 }
 function mergeSort(arr) {
     buttonToggle(false);
@@ -282,7 +286,7 @@ selection.addEventListener("click", () => {
 }); 
 
 merge.addEventListener("click", () => {
-    bars = document.querySelectorAll(".bar");
+    let bars = document.querySelectorAll(".bar");
     mergeSort(bars);
 }); 
 
