@@ -156,7 +156,6 @@ async function selectionSort() {
 async function mergeArray(ele, low, mid, high){
     const n1 = mid - low + 1;
     const n2 = high - mid;
-    console.log(`n1=${n1}, n2=${n2}`);
     let left = new Array(n1);
     let right = new Array(n2);
 
