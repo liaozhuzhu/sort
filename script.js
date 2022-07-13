@@ -141,7 +141,7 @@ async function selectionSort() {
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
-        }, 10)
+        }, speed)
         );
         
         // Provide red color to the (min-idx)th bar
@@ -152,75 +152,135 @@ async function selectionSort() {
     }
 }
 
-// Merge Sort 
-async function mergeArray(leftArr, rightArr) {
-    console.log("Left" + leftArr[0].innerHTML);
-    console.log("Right" + rightArr[0].innerHTML);
+// Merge
+async function mergeArray(ele, low, mid, high){
+    console.log('In merge()');
+    console.log(`low=${low}, mid=${mid}, high=${high}`);
+    const n1 = mid - low + 1;
+    const n2 = high - mid;
+    console.log(`n1=${n1}, n2=${n2}`);
+    let left = new Array(n1);
+    let right = new Array(n2);
 
-    while (leftArr.length && rightArr.length) {
-        leftArr[0].style.backgroundColor = skyeblue;
+    for(let i = 0; i < n1; i++){
         await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve();
-            }, speed)
+        setTimeout(() => {
+            resolve();
+        }, speed)
         );
-        rightArr[0].style.backgroundColor = "green";
+        console.log('In merge left loop');
+        console.log(ele[low + i].style.height + ' at ' + (low+i));
+        // color
+        ele[low + i].style.background = skyeblue;
+        left[i] = ele[low + i].style.height;
+    }
+    for(let i = 0; i < n2; i++){
         await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve();
-            }, speed)
-            );
-        let leftValue = parseInt(leftArr[0].innerHTML);
-        let rightValue = parseInt(rightArr[0].innerHTML);
-        if (rightValue < leftValue) {
-            container.insertBefore(rightArr[0], leftArr[0]);
-            await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve();
-            }, speed)
-            );
-            leftArr[0].style.backgroundColor = lightgreen;
-            rightArr[0].style.backgroundColor = lightgreen;
-            rightArr = rightArr.slice(1);
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+        console.log('In merge right loop');
+        console.log(ele[mid + 1 + i].style.height + ' at ' + (mid+1+i));
+        // color
+        ele[mid + 1 + i].style.background = "green";
+        right[i] = ele[mid + 1 + i].style.height;
+    }
+    await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+    let i = 0, j = 0, k = low;
+    while(i < n1 && j < n2){
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+        console.log('In merge while loop');
+        console.log(parseInt(left[i]), parseInt(right[j]));
+        
+        // To add color for which two r being compared for merging
+        
+        if(parseInt(left[i]) <= parseInt(right[j])){
+            console.log('In merge while loop if');
+            // color
+            if((n1 + n2) === ele.length){
+                ele[k].style.background = lightgreen;
+            }
+            else{
+                ele[k].style.background = lightgreen;
+            }
+            
+            ele[k].style.height = left[i];
+            i++;
+            k++;
         }
-        else {
-            leftArr[0].style.backgroundColor = lightgreen;
-            rightArr[0].style.backgroundColor = lightgreen;
-            leftArr = leftArr.slice(1);
-            rightArr = rightArr.slice(1);
+        else{
+            console.log('In merge while loop else');
+            // color
+            if((n1 + n2) === ele.length){
+                ele[k].style.background = "green";
+            }
+            else{
+                ele[k].style.background = lightgreen;
+            } 
+            ele[k].style.height = right[j];
+            j++;
+            k++;
         }
     }
-    console.log(rightArr);
-    
-    while (leftArr.lenght) {
-        bars = document.querySelectorAll(".bar");
-        container.insertBefore(leftArr[0], bars[0]);
-        leftArr[0].style.backgroundColor = lightgreen;
-        leftArr = leftArr.slice(1);
+    while(i < n1){
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+        console.log("In while if n1 is left");
+        // color
+        if((n1 + n2) === ele.length){
+            ele[k].style.background = lightgreen;
+        }
+        else{
+            ele[k].style.background = lightgreen;
+        }
+        ele[k].style.height = left[i];
+        i++;
+        k++;
     }
-    while (rightArr.length) {
-        bars = document.querySelectorAll(".bar");
-        container.insertBefore(rightArr[0], bars[0]);
-        rightArr[0].style.backgroundColor = lightgreen;
-        console.log("RIGHT: " + rightArr);
-        rightArr = rightArr.slice(1);
+    while(j < n2){
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+        console.log("In while if n2 is left");
+        // color
+        if((n1 + n2) === ele.length){
+            ele[k].style.background = lightgreen;
+        }
+        else{
+            ele[k].style.background = lightgreen;
+        }
+        ele[k].style.height = right[j];
+        j++;
+        k++;
     }
 }
-function mergeSort(arr) {
+
+async function mergeSort(ele, l, r){
     buttonToggle(false);
-    let leftArr = [];
-    let rightArr = [];
-    if (arr.length <= 1) {
-        return arr;
+    console.log('In mergeSort()');
+    if(l >= r){
+        console.log(`return cause just 1 elemment l=${l}, r=${r}`);
+        return;
     }
-    let midPoint = Math.floor(arr.length / 2);
-    for (let i = 0; i < midPoint; i++) {
-        leftArr.push(arr[i]);
-    }
-    for (let i = midPoint; i < arr.length; i++) {
-        rightArr.push(arr[i]);
-    }
-    mergeArray (mergeSort(leftArr), mergeSort(rightArr));
+    const m = l + Math.floor((r - l) / 2);
+    console.log(`left=${l} mid=${m} right=${r}`, typeof(m));
+    await mergeSort(ele, l, m);
+    await mergeSort(ele, m + 1, r);
+    await mergeArray(ele, l, m, r);
 }
 
 // Clear List
@@ -285,10 +345,13 @@ selection.addEventListener("click", () => {
     selectionSort();
 }); 
 
-merge.addEventListener("click", () => {
-    let bars = document.querySelectorAll(".bar");
-    mergeSort(bars);
-}); 
+merge.addEventListener("click", () =>{
+    let ele = document.querySelectorAll('.bar');
+    let l = 0;
+    let r = parseInt(ele.length) - 1;
+    mergeSort(ele, l, r);
+});
+
 
 quick.addEventListener("click", () => {
 
