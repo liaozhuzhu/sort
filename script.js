@@ -154,8 +154,6 @@ async function selectionSort() {
 
 // Merge
 async function mergeArray(ele, low, mid, high){
-    console.log('In merge()');
-    console.log(`low=${low}, mid=${mid}, high=${high}`);
     const n1 = mid - low + 1;
     const n2 = high - mid;
     console.log(`n1=${n1}, n2=${n2}`);
@@ -168,8 +166,6 @@ async function mergeArray(ele, low, mid, high){
             resolve();
         }, speed)
         );
-        console.log('In merge left loop');
-        console.log(ele[low + i].style.height + ' at ' + (low+i));
         // color
         ele[low + i].style.background = skyeblue;
         left[i] = ele[low + i].style.height;
@@ -180,8 +176,6 @@ async function mergeArray(ele, low, mid, high){
             resolve();
         }, speed)
         );
-        console.log('In merge right loop');
-        console.log(ele[mid + 1 + i].style.height + ' at ' + (mid+1+i));
         // color
         ele[mid + 1 + i].style.background = "green";
         right[i] = ele[mid + 1 + i].style.height;
@@ -198,13 +192,10 @@ async function mergeArray(ele, low, mid, high){
             resolve();
         }, speed)
         );
-        console.log('In merge while loop');
-        console.log(parseInt(left[i]), parseInt(right[j]));
         
         // To add color for which two r being compared for merging
         
         if(parseInt(left[i]) <= parseInt(right[j])){
-            console.log('In merge while loop if');
             // color
             if((n1 + n2) === ele.length){
                 ele[k].style.background = lightgreen;
@@ -218,7 +209,6 @@ async function mergeArray(ele, low, mid, high){
             k++;
         }
         else{
-            console.log('In merge while loop else');
             // color
             if((n1 + n2) === ele.length){
                 ele[k].style.background = "green";
@@ -237,7 +227,6 @@ async function mergeArray(ele, low, mid, high){
             resolve();
         }, speed)
         );
-        console.log("In while if n1 is left");
         // color
         if((n1 + n2) === ele.length){
             ele[k].style.background = lightgreen;
@@ -255,7 +244,6 @@ async function mergeArray(ele, low, mid, high){
             resolve();
         }, speed)
         );
-        console.log("In while if n2 is left");
         // color
         if((n1 + n2) === ele.length){
             ele[k].style.background = lightgreen;
@@ -271,13 +259,10 @@ async function mergeArray(ele, low, mid, high){
 
 async function mergeSort(ele, l, r){
     buttonToggle(false);
-    console.log('In mergeSort()');
     if(l >= r){
-        console.log(`return cause just 1 elemment l=${l}, r=${r}`);
         return;
     }
     const m = l + Math.floor((r - l) / 2);
-    console.log(`left=${l} mid=${m} right=${r}`, typeof(m));
     await mergeSort(ele, l, m);
     await mergeSort(ele, m + 1, r);
     await mergeArray(ele, l, m, r);
