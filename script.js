@@ -167,7 +167,7 @@ async function mergeArray(ele, low, mid, high){
         );
         // color
         ele[low + i].style.background = skyeblue;
-        left[i] = ele[low + i].style.height;
+        left[i] = ele[low + i];
     }
     for(let i = 0; i < n2; i++){
         await new Promise((resolve) =>
@@ -177,7 +177,7 @@ async function mergeArray(ele, low, mid, high){
         );
         // color
         ele[mid + 1 + i].style.background = "green";
-        right[i] = ele[mid + 1 + i].style.height;
+        right[i] = ele[mid + 1 + i];
     }
     await new Promise((resolve) =>
         setTimeout(() => {
@@ -194,16 +194,17 @@ async function mergeArray(ele, low, mid, high){
         
         // To add color for which two r being compared for merging
         
-        if(parseInt(left[i]) <= parseInt(right[j])){
+        if(parseInt(left[i].innerHTML) <= parseInt(right[j].innerHTML)){
             // color
             if((n1 + n2) === ele.length){
-                ele[k].style.background = lightgreen;
+                ele[k].style.background = "green";
             }
             else{
                 ele[k].style.background = lightgreen;
             }
             
-            ele[k].style.height = left[i];
+            ele[k].style.height = left[i].style.height;
+            ele[k].innerHTML = left[i].innerHTML;
             i++;
             k++;
         }
@@ -215,7 +216,8 @@ async function mergeArray(ele, low, mid, high){
             else{
                 ele[k].style.background = lightgreen;
             } 
-            ele[k].style.height = right[j];
+            ele[k].style.height = right[j].style.height;
+            ele[k].innerHTML = right[j].innerHTML;
             j++;
             k++;
         }
@@ -233,7 +235,8 @@ async function mergeArray(ele, low, mid, high){
         else{
             ele[k].style.background = lightgreen;
         }
-        ele[k].style.height = left[i];
+        ele[k].style.height = left[i].style.height;
+        ele[k].innerHTML = left[i].innerHTML;
         i++;
         k++;
     }
@@ -250,21 +253,22 @@ async function mergeArray(ele, low, mid, high){
         else{
             ele[k].style.background = lightgreen;
         }
-        ele[k].style.height = right[j];
+        ele[k].style.height = right[j].style.height;
+        ele[k].innerHTML = right[j].innerHTML;
         j++;
         k++;
     }
 }
 
-async function mergeSort(ele, l, r){
+async function mergeSort(ele, left, right){
     buttonToggle(false);
-    if(l >= r){
+    if(left >= right){
         return;
     }
-    const m = l + Math.floor((r - l) / 2);
-    await mergeSort(ele, l, m);
-    await mergeSort(ele, m + 1, r);
-    await mergeArray(ele, l, m, r);
+    let mid = left + Math.floor((right - left) / 2);
+    await mergeSort(ele, left, mid);
+    await mergeSort(ele, mid + 1, right);
+    await mergeArray(ele, left, mid, right);
 }
 
 // Clear List
