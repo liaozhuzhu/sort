@@ -346,7 +346,7 @@ selection.addEventListener("click", () => {
 }); 
 
 merge.addEventListener("click", () =>{
-    let ele = document.querySelectorAll('.bar');
+    let ele = document.querySelectorAll(".bar");
     let l = 0;
     let r = parseInt(ele.length) - 1;
     mergeSort(ele, l, r);
