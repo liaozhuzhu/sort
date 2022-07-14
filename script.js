@@ -179,6 +179,8 @@ async function mergeArray(ele, low, mid, high){
         ele[mid + 1 + i].style.background = "green";
         right[i] = ele[mid + 1 + i];
     }
+
+
     await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
@@ -191,8 +193,6 @@ async function mergeArray(ele, low, mid, high){
             resolve();
         }, speed)
         );
-        
-        // To add color for which two r being compared for merging
         
         if(parseInt(left[i].innerHTML) <= parseInt(right[j].innerHTML)){
             // color
