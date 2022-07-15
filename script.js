@@ -154,8 +154,12 @@ async function selectionSort() {
 
 // Merge
 async function mergeArray(ele, low, mid, high){
+    console.log("Mid: " + mid);
+    console.log("Low: " + low);
     let n1 = mid - low + 1;
     let n2 = high - mid;
+    console.log("n1: " + n1);
+    console.log("n2: " + n2);
     let left = new Array(n1);
     let right = new Array(n2);
 
@@ -197,27 +201,27 @@ async function mergeArray(ele, low, mid, high){
         if(parseInt(left[i].innerHTML) <= parseInt(right[j].innerHTML)){
             // color
             if((n1 + n2) === ele.length){
-                ele[k].style.background = "green";
-            }
-            else{
                 ele[k].style.background = lightgreen;
             }
+            else{
+                ele[k].style.background = "green";
+            }
             
-            ele[k].style.height = left[i].style.height;
-            ele[k].innerHTML = left[i].innerHTML;
+            // ele[k].style.height = left[i].style.height;
+            // ele[k].innerHTML = left[i].innerHTML;
             i++;
             k++;
         }
         else{
             // color
             if((n1 + n2) === ele.length){
-                ele[k].style.background = "green";
+                ele[k].style.background = lightgreen;
             }
             else{
-                ele[k].style.background = lightgreen;
+                ele[k].style.background = "green";
             } 
-            ele[k].style.height = right[j].style.height;
-            ele[k].innerHTML = right[j].innerHTML;
+            // ele[k].style.height = right[j].style.height;
+            // ele[k].innerHTML = right[j].innerHTML;
             j++;
             k++;
         }
@@ -235,8 +239,9 @@ async function mergeArray(ele, low, mid, high){
         else{
             ele[k].style.background = lightgreen;
         }
-        ele[k].style.height = left[i].style.height;
-        ele[k].innerHTML = left[i].innerHTML;
+        container.insertBefore(left[i], right[j]);
+        // ele[k].style.height = left[i].style.height;
+        // ele[k].innerHTML = left[i].innerHTML;
         i++;
         k++;
     }
