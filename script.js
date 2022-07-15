@@ -154,8 +154,8 @@ async function selectionSort() {
 
 // Merge
 async function mergeArray(ele, low, mid, high){
-    const n1 = mid - low + 1;
-    const n2 = high - mid;
+    let n1 = mid - low + 1;
+    let n2 = high - mid;
     let left = new Array(n1);
     let right = new Array(n2);
 
@@ -297,10 +297,10 @@ function createRandom() {
     for (let i = 0; i < size; i++) {
 
         // To generate random values from 1 to 100
-        const value = Math.floor(Math.random() * 100) + 1;
+        let value = Math.floor(Math.random() * 100) + 1;
         
         // To create element "div"
-        const bar = document.createElement("div");
+        let bar = document.createElement("div");
     
         // To add class "bar" to "div"
         bar.classList.add("bar");
