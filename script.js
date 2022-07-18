@@ -194,8 +194,7 @@ async function mergeArray(ele, low, mid, high){
         }, speed)
         );
         
-        if(parseInt(left[i]) <= parseInt(right[j])){
-            console.log("less");
+        if(parseInt(left[i].style.height) <= parseInt(right[j].style.height)){
             // color
             if((n1 + n2) === ele.length){
                 ele[k].style.background = lightgreen;
@@ -203,10 +202,12 @@ async function mergeArray(ele, low, mid, high){
             else{
                 ele[k].style.background = "green";
             }
-            
+            tempHeight = ele[k].style.height;
+            tempValue = ele[k].innerHTML;
             ele[k].style.height = left[i].style.height;
             ele[k].innerHTML = left[i].innerHTML;
-            console.log(left[i]);
+            left[i].style.height = tempHeight;
+            left[i].innerHTML = tempValue;
             i++;
             k++;
         }
@@ -229,6 +230,9 @@ async function mergeArray(ele, low, mid, high){
         }
     }
     while(i < n1){
+        console.log("Ele: " + ele);
+        console.log("Ele k: " + ele[k].innerHTML);
+        console.log("i: " + i, "n1: " + n1, "n2: " + n2, "ele length: " + ele.length, "left i: " + left[i].innerHTML);
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
@@ -236,12 +240,17 @@ async function mergeArray(ele, low, mid, high){
         );
         // color
         if((n1 + n2) === ele.length){
-            ele[k].style.background = 'green';
+            ele[k].style.background = lightgreen;
         }
         else{
             ele[k].style.background = lightgreen;
         }
-        ele[k].style.height = left[i];
+        // tempHeight = ele[k].style.height;
+        // tempValue = ele[k].innerHTML;
+        // ele[k].style.height = left[i].style.height;
+        // ele[k].innerHTML = left[i].innerHTML;
+        // left[i].style.height = tempHeight;
+        // left[i].innerHTML = tempValue;
         i++;
         k++;
     }
@@ -253,12 +262,17 @@ async function mergeArray(ele, low, mid, high){
         );
         // color
         if((n1 + n2) === ele.length){
-            ele[k].style.background = 'green';
+            ele[k].style.background = lightgreen;
         }
         else{
             ele[k].style.background = lightgreen;
         }
-        ele[k].style.height = right[j];
+        // tempHeight = ele[k].style.height;
+        // tempValue = ele[k].innerHTML;
+        ele[k].style.height = right[j].style.height;
+        ele[k].innerHTML = right[j].innerHTML;
+        // right[j].style.height = tempHeight;
+        // right[j].innerHTML = tempValue;
         j++;
         k++;
     }
