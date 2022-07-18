@@ -154,12 +154,8 @@ async function selectionSort() {
 
 // Merge
 async function mergeArray(ele, low, mid, high){
-    console.log("Mid: " + mid);
-    console.log("Low: " + low);
     let n1 = mid - low + 1;
     let n2 = high - mid;
-    console.log("n1: " + n1);
-    console.log("n2: " + n2);
     let left = new Array(n1);
     let right = new Array(n2);
 
@@ -170,8 +166,8 @@ async function mergeArray(ele, low, mid, high){
         }, speed)
         );
         // color
-        ele[low + i].style.background = 'orange';
-        left[i] = ele[low + i].style.height;
+        ele[low + i].style.background = skyeblue;
+        left[i] = ele[low + i];
     }
     for(let i = 0; i < n2; i++){
         await new Promise((resolve) =>
@@ -180,8 +176,8 @@ async function mergeArray(ele, low, mid, high){
         }, speed)
         );
         // color
-        ele[mid + 1 + i].style.background = 'yellow';
-        right[i] = ele[mid + 1 + i].style.height;
+        ele[mid + 1 + i].style.background = "green";
+        right[i] = ele[mid + 1 + i];
     }
 
 
@@ -199,6 +195,7 @@ async function mergeArray(ele, low, mid, high){
         );
         
         if(parseInt(left[i]) <= parseInt(right[j])){
+            console.log("less");
             // color
             if((n1 + n2) === ele.length){
                 ele[k].style.background = lightgreen;
@@ -207,7 +204,9 @@ async function mergeArray(ele, low, mid, high){
                 ele[k].style.background = "green";
             }
             
-            ele[k].style.height = left[i];
+            ele[k].style.height = left[i].style.height;
+            ele[k].innerHTML = left[i].innerHTML;
+            console.log(left[i]);
             i++;
             k++;
         }
@@ -219,7 +218,12 @@ async function mergeArray(ele, low, mid, high){
             else{
                 ele[k].style.background = "green";
             } 
-            ele[k].style.height = right[j];
+            tempHeight = ele[k].style.height;
+            tempValue = ele[k].innerHTML;
+            ele[k].style.height = right[j].style.height;
+            ele[k].innerHTML = right[j].innerHTML;
+            right[j].style.height = tempHeight;
+            right[j].innerHTML = tempValue;
             j++;
             k++;
         }
@@ -232,7 +236,7 @@ async function mergeArray(ele, low, mid, high){
         );
         // color
         if((n1 + n2) === ele.length){
-            ele[k].style.background = lightgreen;
+            ele[k].style.background = 'green';
         }
         else{
             ele[k].style.background = lightgreen;
@@ -249,7 +253,7 @@ async function mergeArray(ele, low, mid, high){
         );
         // color
         if((n1 + n2) === ele.length){
-            ele[k].style.background = lightgreen;
+            ele[k].style.background = 'green';
         }
         else{
             ele[k].style.background = lightgreen;
