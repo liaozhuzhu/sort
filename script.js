@@ -153,7 +153,7 @@ async function selectionSort() {
 }
 
 // Merge
-async function mergeArray(ele, low, mid, high){
+async function mergeArray(bars, low, mid, high){
     let n1 = mid - low + 1;
     let n2 = high - mid;
     let left = new Array(n1);
@@ -166,8 +166,9 @@ async function mergeArray(ele, low, mid, high){
         }, speed)
         );
         // color
-        ele[low + i].style.background = skyeblue;
-        left[i] = ele[low + i].style.height;
+        bars[low + i].style.background = skyeblue;
+        left[i] = bars[low + i].style.height;
+        //left[i] = bars[low + i];
     }
     for(let i = 0; i < n2; i++){
         await new Promise((resolve) =>
@@ -176,8 +177,9 @@ async function mergeArray(ele, low, mid, high){
         }, speed)
         );
         // color
-        ele[mid + 1 + i].style.background = "green";
-        right[i] = ele[mid + 1 + i].style.height;
+        bars[mid + 1 + i].style.background = "green";
+        right[i] = bars[mid + 1 + i].style.height;
+        //right[i] = bars[mid + 1 + i];
     }
 
 
@@ -196,46 +198,43 @@ async function mergeArray(ele, low, mid, high){
         
         if(parseInt(left[i]) <= parseInt(right[j])){
             // color
-            if((n1 + n2) === ele.length){
-                ele[k].style.background = lightgreen;
+            if((n1 + n2) === bars.length){
+                bars[k].style.background = lightgreen;
             }
             else{
-                ele[k].style.background = "green";
+                bars[k].style.background = "green";
             }
-            ele[k].style.height = left[i];
+            bars[k].style.height = left[i];
             i++;
             k++;
         }
         else{
             // color
-            if((n1 + n2) === ele.length){
-                ele[k].style.background = lightgreen;
+            if((n1 + n2) === bars.length){
+                bars[k].style.background = lightgreen;
             }
             else{
-                ele[k].style.background = "green";
+                bars[k].style.background = "green";
             } 
-            ele[k].style.height = right[j];
+            bars[k].style.height = right[j];
             j++;
             k++;
         }
     }
     while(i < n1){
-        console.log("Ele: " + ele);
-        console.log("Ele k: " + ele[k].innerHTML);
-        console.log("i: " + i, "n1: " + n1, "n2: " + n2, "ele length: " + ele.length, "left i: " + left[i].innerHTML);
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
         }, speed)
         );
         // color
-        if((n1 + n2) === ele.length){
-            ele[k].style.background = lightgreen;
+        if((n1 + n2) === bars.length){
+            bars[k].style.background = lightgreen;
         }
         else{
-            ele[k].style.background = lightgreen;
+            bars[k].style.background = lightgreen;
         }
-        ele[k].style.height = left[i];
+        bars[k].style.height = left[i];
         i++;
         k++;
     }
@@ -246,27 +245,27 @@ async function mergeArray(ele, low, mid, high){
         }, speed)
         );
         // color
-        if((n1 + n2) === ele.length){
-            ele[k].style.background = lightgreen;
+        if((n1 + n2) === bars.length){
+            bars[k].style.background = lightgreen;
         }
         else{
-            ele[k].style.background = lightgreen;
+            bars[k].style.background = lightgreen;
         }
-        ele[k].style.height = right[j];
+        bars[k].style.height = right[j];
         j++;
         k++;
     }
 }
 
-async function mergeSort(ele, left, right){
+async function mergeSort(bars, left, right){
     buttonToggle(false);
     if(left >= right){
         return;
     }
     let mid = left + Math.floor((right - left) / 2);
-    await mergeSort(ele, left, mid);
-    await mergeSort(ele, mid + 1, right);
-    await mergeArray(ele, left, mid, right);
+    await mergeSort(bars, left, mid);
+    await mergeSort(bars, mid + 1, right);
+    await mergeArray(bars, left, mid, right);
 }
 
 // Clear List
@@ -332,10 +331,10 @@ selection.addEventListener("click", () => {
 }); 
 
 merge.addEventListener("click", () =>{
-    let ele = document.querySelectorAll(".bar");
+    let bars = document.querySelectorAll(".bar");
     let l = 0;
-    let r = parseInt(ele.length) - 1;
-    mergeSort(ele, l, r);
+    let r = parseInt(bars.length) - 1;
+    mergeSort(bars, l, r);
 });
 
 
