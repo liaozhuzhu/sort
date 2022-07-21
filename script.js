@@ -12,7 +12,7 @@ let speedValue = document.getElementById("speed-value");
 let random = document.getElementById("random");
 let bubble = document.getElementById("bubble");
 let selection = document.getElementById("selection");
-let merge = document.getElementById("merge");
+let insertion = document.getElementById("insertion");
 let quick = document.getElementById("quick");
 let buttons = document.getElementsByTagName("button");
 
@@ -152,120 +152,9 @@ async function selectionSort() {
     }
 }
 
-// Merge
-async function mergeArray(bars, low, mid, high){
-    let n1 = mid - low + 1;
-    let n2 = high - mid;
-    let left = new Array(n1);
-    let right = new Array(n2);
-
-    for(let i = 0; i < n1; i++){
-        await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-        );
-        // color
-        bars[low + i].style.background = skyeblue;
-        left[i] = bars[low + i].style.height;
-        //left[i] = bars[low + i];
-    }
-    for(let i = 0; i < n2; i++){
-        await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-        );
-        // color
-        bars[mid + 1 + i].style.background = "green";
-        right[i] = bars[mid + 1 + i].style.height;
-        //right[i] = bars[mid + 1 + i];
-    }
-
-
-    await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-        );
-    let i = 0, j = 0, k = low;
-    while(i < n1 && j < n2){
-        await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-        );
-        
-        if(parseInt(left[i]) <= parseInt(right[j])){
-            // color
-            if((n1 + n2) === bars.length){
-                bars[k].style.background = lightgreen;
-            }
-            else{
-                bars[k].style.background = "green";
-            }
-            bars[k].style.height = left[i];
-            i++;
-            k++;
-        }
-        else{
-            // color
-            if((n1 + n2) === bars.length){
-                bars[k].style.background = lightgreen;
-            }
-            else{
-                bars[k].style.background = "green";
-            } 
-            bars[k].style.height = right[j];
-            j++;
-            k++;
-        }
-    }
-    while(i < n1){
-        await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-        );
-        // color
-        if((n1 + n2) === bars.length){
-            bars[k].style.background = lightgreen;
-        }
-        else{
-            bars[k].style.background = lightgreen;
-        }
-        bars[k].style.height = left[i];
-        i++;
-        k++;
-    }
-    while(j < n2){
-        await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-        );
-        // color
-        if((n1 + n2) === bars.length){
-            bars[k].style.background = lightgreen;
-        }
-        else{
-            bars[k].style.background = lightgreen;
-        }
-        bars[k].style.height = right[j];
-        j++;
-        k++;
-    }
-}
-
-async function mergeSort(bars, left, right){
+// Insertion
+async function insertionSort() {
     buttonToggle(false);
-    if(left >= right){
-        return;
-    }
-    let mid = left + Math.floor((right - left) / 2);
-    await mergeSort(bars, left, mid);
-    await mergeSort(bars, mid + 1, right);
-    await mergeArray(bars, left, mid, right);
 }
 
 // Clear List
@@ -330,11 +219,8 @@ selection.addEventListener("click", () => {
     selectionSort();
 }); 
 
-merge.addEventListener("click", () =>{
-    let bars = document.querySelectorAll(".bar");
-    let l = 0;
-    let r = parseInt(bars.length) - 1;
-    mergeSort(bars, l, r);
+insertion.addEventListener("click", () =>{
+    insertionSort();
 });
 
 
