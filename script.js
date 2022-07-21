@@ -155,6 +155,7 @@ async function selectionSort() {
 // Insertion
 async function insertionSort() {
     buttonToggle(false);
+    let bars = document.querySelectorAll(".bar");
 }
 
 // Clear List
