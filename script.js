@@ -157,18 +157,14 @@ async function insertionSort() {
     let bars = document.querySelectorAll(".bar");
     bars[0].style.backgroundColor = lightgreen;
 
-    for (let i = 1; i <= bars.length; i++) {
+    for (let i = 1; i < bars.length; i++) {
         await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
             }, speed)
-            );
-        bars[i].style.backgroundColor = skyeblue;
-        await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
         );
+        console.log(bars[i]);
+        bars[i].style.backgroundColor = skyeblue;
         let tempHeight = bars[i].style.height;
         let tempValue = bars[i].innerHTML;
         let j = i;
@@ -200,14 +196,20 @@ async function insertionSort() {
         );
         bars[j].style.backgroundColor = lightgreen;
     }
-    for (let i = 0; i < bars.length; i++) {
-        await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-        );
-        bars[i].style.backgroundColor = lightgreen;
-    }
+    // brute force change whole array to light green
+    // for (let i = 0; i < bars.length; i++) {
+    //     await new Promise((resolve) =>
+    //     setTimeout(() => {
+    //         resolve();
+    //     }, speed * 10)
+    //     );
+    //     bars[i].style.backgroundColor = lightgreen;
+    //     await new Promise((resolve) =>
+    //     setTimeout(() => {
+    //         resolve();
+    //     }, speed * 10)
+    //     );
+    // }
 }
 
 // Clear List
