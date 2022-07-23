@@ -157,21 +157,21 @@ async function insertionSort() {
     let bars = document.querySelectorAll(".bar");
     bars[0].style.backgroundColor = lightgreen;
     for (let i = 1; i < bars.length; i++) {
+        bars[i].style.backgroundColor = skyeblue;
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
         }, speed)
         );
-        bars[i].style.backgroundColor = skyeblue;
         let temp = bars[i];
+        let tempHeight = bars[i].style.height;
+        let tempValue = bars[i].innerHTML;
         let j = i;
         while (j > 0 && parseInt(bars[j-1].innerHTML) > parseInt(temp.innerHTML) ) {
-            console.log(j);
             bars[j-1].style.backgroundColor = "green";
             bars[j].style.height = bars[j-1].style.height;
             bars[j].innerHTML = bars[j-1].innerHTML;
             j--;
-            console.log(j);
         }
         await new Promise((resolve) =>
         setTimeout(() => {
@@ -179,8 +179,9 @@ async function insertionSort() {
         }, speed)
         );
         bars[i].style.backgroundColor = lightgreen;
-        bars[j].style.height = temp.style.height;
-        bars[j].innerHTML = temp.innerHTML;
+        bars[j].style.height = tempHeight;
+        bars[j].innerHTML = tempValue;
+        bars[j].style.backgroundColor = lightgreen;
     }
     // let arr = [5,3,3,4,2,1];
     // for (let i = 1; i < arr.length; i++) {
