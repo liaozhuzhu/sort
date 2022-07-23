@@ -13,7 +13,6 @@ let random = document.getElementById("random");
 let bubble = document.getElementById("bubble");
 let selection = document.getElementById("selection");
 let insertion = document.getElementById("insertion");
-let quick = document.getElementById("quick");
 let buttons = document.getElementsByTagName("button");
 
 // Extra 
@@ -156,6 +155,17 @@ async function selectionSort() {
 async function insertionSort() {
     buttonToggle(false);
     let bars = document.querySelectorAll(".bar");
+    let arr = [5,3,3,4,2,1];
+    for (let i = 1; i < arr.length; i++) {
+        let temp = arr[i];
+        let j = i;
+        while (arr[j - 1] > temp && j > 0) {
+            arr[j] = arr[j - 1];
+            j--;
+        }
+        arr[j] = temp;
+    }
+    container.innerHTML = arr;
 }
 
 // Clear List
@@ -223,11 +233,6 @@ selection.addEventListener("click", () => {
 insertion.addEventListener("click", () =>{
     insertionSort();
 });
-
-
-quick.addEventListener("click", () => {
-
-}); 
 
 random.addEventListener("click", () => {
     createRandom();
