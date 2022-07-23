@@ -155,17 +155,44 @@ async function selectionSort() {
 async function insertionSort() {
     buttonToggle(false);
     let bars = document.querySelectorAll(".bar");
-    let arr = [5,3,3,4,2,1];
-    for (let i = 1; i < arr.length; i++) {
-        let temp = arr[i];
+    bars[0].style.backgroundColor = lightgreen;
+    for (let i = 1; i < bars.length; i++) {
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+        bars[i].style.backgroundColor = skyeblue;
+        let temp = bars[i];
         let j = i;
-        while (arr[j - 1] > temp && j > 0) {
-            arr[j] = arr[j - 1];
+        while (j > 0 && parseInt(bars[j-1].innerHTML) > parseInt(temp.innerHTML) ) {
+            console.log(j);
+            bars[j-1].style.backgroundColor = "green";
+            bars[j].style.height = bars[j-1].style.height;
+            bars[j].innerHTML = bars[j-1].innerHTML;
             j--;
+            console.log(j);
         }
-        arr[j] = temp;
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+        bars[i].style.backgroundColor = lightgreen;
+        bars[j].style.height = temp.style.height;
+        bars[j].innerHTML = temp.innerHTML;
     }
-    container.innerHTML = arr;
+    // let arr = [5,3,3,4,2,1];
+    // for (let i = 1; i < arr.length; i++) {
+    //     let temp = arr[i];
+    //     let j = i;
+    //     while (arr[j - 1] > temp && j > 0) {
+    //         arr[j] = arr[j - 1];
+    //         j--;
+    //     }
+    //     arr[j] = temp;
+    // }
+    // container.innerHTML = arr;
 }
 
 // Clear List
@@ -194,7 +221,7 @@ function createRandom() {
     for (let i = 0; i < size; i++) {
 
         // To generate random values from 1 to 100
-        let value = Math.floor(Math.random() * 100) + 1;
+        let value = Math.floor(Math.random() * 99) + 1;
         
         // To create element "div"
         let bar = document.createElement("div");
