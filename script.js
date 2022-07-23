@@ -156,23 +156,35 @@ async function insertionSort() {
     buttonToggle(false);
     let bars = document.querySelectorAll(".bar");
     bars[0].style.backgroundColor = lightgreen;
-    for (let i = 1; i < bars.length; i++) {
+
+    for (let i = 1; i <= bars.length; i++) {
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, speed)
+            );
         bars[i].style.backgroundColor = skyeblue;
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
         }, speed)
         );
-        let temp = bars[i];
         let tempHeight = bars[i].style.height;
         let tempValue = bars[i].innerHTML;
         let j = i;
-        while (j > 0 && parseInt(bars[j-1].innerHTML) > parseInt(temp.innerHTML) ) {
+
+        while (j > 0 && parseInt(bars[j-1].innerHTML) > parseInt(tempValue) ) {
             bars[j-1].style.backgroundColor = "green";
+            await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, speed)
+            );
             bars[j].style.height = bars[j-1].style.height;
             bars[j].innerHTML = bars[j-1].innerHTML;
             j--;
         }
+
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
@@ -181,19 +193,21 @@ async function insertionSort() {
         bars[i].style.backgroundColor = lightgreen;
         bars[j].style.height = tempHeight;
         bars[j].innerHTML = tempValue;
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
         bars[j].style.backgroundColor = lightgreen;
     }
-    // let arr = [5,3,3,4,2,1];
-    // for (let i = 1; i < arr.length; i++) {
-    //     let temp = arr[i];
-    //     let j = i;
-    //     while (arr[j - 1] > temp && j > 0) {
-    //         arr[j] = arr[j - 1];
-    //         j--;
-    //     }
-    //     arr[j] = temp;
-    // }
-    // container.innerHTML = arr;
+    for (let i = 0; i < bars.length; i++) {
+        await new Promise((resolve) =>
+        setTimeout(() => {
+            resolve();
+        }, speed)
+        );
+        bars[i].style.backgroundColor = lightgreen;
+    }
 }
 
 // Clear List
