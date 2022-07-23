@@ -168,8 +168,18 @@ async function insertionSort() {
         let tempHeight = bars[i].style.height;
         let tempValue = bars[i].innerHTML;
         let j = i;
+        let sorted = true;
+        if (j > 0) {
+            await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, speed)
+            );
+            bars[j-1].style.backgroundColor = "green";
+        }
 
         while (j > 0 && parseInt(bars[j-1].innerHTML) > parseInt(tempValue) ) {
+            sorted = false;
             bars[j-1].style.backgroundColor = "green";
             await new Promise((resolve) =>
             setTimeout(() => {
@@ -180,7 +190,7 @@ async function insertionSort() {
             bars[j].innerHTML = bars[j-1].innerHTML;
             j--;
         }
-
+    
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
@@ -195,6 +205,15 @@ async function insertionSort() {
         }, speed)
         );
         bars[j].style.backgroundColor = lightgreen;
+
+        if (sorted) {
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, speed)
+            );
+            bars[j-1].style.backgroundColor = lightgreen;
+        }
     }
     // brute force change whole array to light green
     // for (let i = 0; i < bars.length; i++) {
