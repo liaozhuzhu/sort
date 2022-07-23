@@ -186,8 +186,9 @@ async function insertionSort() {
                 resolve();
             }, speed)
             );
-            bars[j].style.height = bars[j-1].style.height;
-            bars[j].innerHTML = bars[j-1].innerHTML;
+            container.insertBefore(bars[j], bars[j-1]);
+            // bars[j].style.height = bars[j-1].style.height;
+            // bars[j].innerHTML = bars[j-1].innerHTML;
             j--;
         }
     
@@ -197,8 +198,8 @@ async function insertionSort() {
         }, speed)
         );
         bars[i].style.backgroundColor = lightgreen;
-        bars[j].style.height = tempHeight;
-        bars[j].innerHTML = tempValue;
+        // bars[j].style.height = tempHeight;
+        // bars[j].innerHTML = tempValue;
         await new Promise((resolve) =>
         setTimeout(() => {
             resolve();
@@ -215,13 +216,13 @@ async function insertionSort() {
     //     await new Promise((resolve) =>
     //     setTimeout(() => {
     //         resolve();
-    //     }, speed * 10)
+    //     }, speed * 8)
     //     );
     //     bars[i].style.backgroundColor = lightgreen;
     //     await new Promise((resolve) =>
     //     setTimeout(() => {
     //         resolve();
-    //     }, speed * 10)
+    //     }, speed * 8)
     //     );
     // }
 }
