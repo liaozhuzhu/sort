@@ -207,11 +207,6 @@ async function insertionSort() {
         bars[j].style.backgroundColor = lightgreen;
 
         if (sorted) {
-            await new Promise((resolve) =>
-                setTimeout(() => {
-                    resolve();
-                }, speed)
-            );
             bars[j-1].style.backgroundColor = lightgreen;
         }
     }
