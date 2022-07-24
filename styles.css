@@ -138,13 +138,3 @@ body {
     margin: 3px;
     transition: 0.3s all ease;
 }
-
-/* Responsive */
-@media only screen and (max-width: 1300px)
-{
-    .bar
-    { 
-        width: 10px;
-        font-size: 10px;
-    }
-}
