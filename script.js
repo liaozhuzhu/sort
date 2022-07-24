@@ -23,6 +23,7 @@ speedValue.innerHTML = speed;
 
 // Colors 
 let skyeblue = "rgb(24, 190, 255)";
+let purple = "rgb(171, 0, 223)";
 let lightgreen = "rgb(49, 226, 13)";
 
 // Functions
@@ -58,7 +59,7 @@ async function bubbleSort() {
     for (let i = 0; i < bars.length; i++) {
         for (let j = 0; j < bars.length - i - 1; j++) {
             bars[j].style.backgroundColor = skyeblue;
-            bars[j + 1].style.backgroundColor = "green";
+            bars[j + 1].style.backgroundColor = purple;
   
             await new Promise((resolve) =>
                 setTimeout(() => {
@@ -100,7 +101,7 @@ async function selectionSort() {
         for (let j = i + 1; j < bars.length; j ++) {
     
             // Smallest Bar
-            bars[j].style.backgroundColor = "green";
+            bars[j].style.backgroundColor = purple;
             
             // To pause the execution of code
             await new Promise((resolve) =>
@@ -165,6 +166,8 @@ async function insertionSort() {
         );
         console.log(bars[i]);
         bars[i].style.backgroundColor = skyeblue;
+        let switchHeight;
+        let switchValue;
         let tempHeight = bars[i].style.height;
         let tempValue = bars[i].innerHTML;
         let j = i;
@@ -175,20 +178,29 @@ async function insertionSort() {
                 resolve();
             }, speed)
             );
-            bars[j-1].style.backgroundColor = "green";
+            bars[j-1].style.backgroundColor = purple;
         }
 
         while (j > 0 && parseInt(bars[j-1].innerHTML) > parseInt(tempValue) ) {
             sorted = false;
-            bars[j-1].style.backgroundColor = "green";
+            bars[j-1].style.backgroundColor = purple;
             await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
             }, speed)
             );
-            container.insertBefore(bars[j], bars[j-1]);
-            // bars[j].style.height = bars[j-1].style.height;
-            // bars[j].innerHTML = bars[j-1].innerHTML;
+            switchHeight = bars[j].style.height;
+            switchValue = bars[j].innerHTML;
+            bars[j].style.height = bars[j-1].style.height;
+            bars[j].innerHTML = bars[j-1].innerHTML;
+            bars[j-1].style.height = switchHeight;
+            bars[j-1].innerHTML = switchValue;
+            await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, speed)
+            );
+            bars[j-1].style.backgroundColor = lightgreen;
             j--;
         }
     
