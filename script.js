@@ -188,8 +188,10 @@ async function insertionSort() {
             );
             switchHeight = bars[j].style.height;
             switchValue = bars[j].innerHTML;
+            bars[j].style.backgroundColor = lightgreen;
             bars[j].style.height = bars[j-1].style.height;
             bars[j].innerHTML = bars[j-1].innerHTML;
+            bars[j-1].style.backgroundColor = skyeblue;
             bars[j-1].style.height = switchHeight;
             bars[j-1].innerHTML = switchValue;
             await new Promise((resolve) =>
@@ -198,11 +200,9 @@ async function insertionSort() {
             }, speed)
             );
             bars[i].style.backgroundColor = lightgreen;
-            bars[j-1].style.backgroundColor = skyeblue;
             j--;
         }
         if (j > 0 && parseInt(bars[j-1].innerHTML) < parseInt(tempValue)) {
-            console.log(bars[j-1]);
             bars[j-1].style.backgroundColor = purple;
             await new Promise((resolve) =>
             setTimeout(() => {
@@ -211,11 +211,6 @@ async function insertionSort() {
             );
             bars[j-1].style.backgroundColor = lightgreen;
         }
-        await new Promise((resolve) =>
-        setTimeout(() => {
-            resolve();
-        }, speed)
-        );
         bars[j].style.backgroundColor = lightgreen;
 
         if (sorted) {
