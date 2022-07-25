@@ -95,13 +95,15 @@ body {
     width: auto;
     height: 300px;
     margin-bottom: 80px;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 /* Key */
 .info {
     display: flex;
     justify-content: space-around;
+    width: auto;
 }
 
 .key {
@@ -135,6 +137,7 @@ body {
     outline: 1px solid black;
     display: inline-block;
     background-color: red;
-    margin: 3px;
+    margin: 2.5px;
+    padding: 1px;
     transition: 0.3s all ease;
 }

@@ -255,11 +255,6 @@ function createRandom() {
     
         // Provide height to the bar
         bar.style.height = `${value * 3}px`;
-        if (size > 50) {
-            bar.style.width = "10px";
-            bar.style.fontSize = "10px";
-            bar.style.margin = "1.5px";
-        }
 
         // Provide bar value
         bar.innerHTML = value;
